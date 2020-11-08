@@ -1,0 +1,19 @@
+{
+  "name": "cs-546-final-project",
+  "version": "1.0.0",
+  "description": "Final Project ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/podkolzinmir/CS-546-Final-Project.git"
+  },
+  "author": "Miriam Podkolzin, Ayesha Parveen, Rohan Ratwani, John Dyer, Pratik Deo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/podkolzinmir/CS-546-Final-Project/issues"
+  },
+  "homepage": "https://github.com/podkolzinmir/CS-546-Final-Project#readme"
+}

@@ -21,3 +21,6 @@
     - /config/mongoCollection.js
     - /config/mongoConnection
     - /config/settings.json
+
+/tasks
+    - /tasks/seed.js
