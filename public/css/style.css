@@ -1,0 +1,22 @@
+#body-main {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "Roboto", sans-serif;
+}
+
+#register-btn {
+  border: black 1px solid;
+}
+#register-btn:hover {
+  background: linear-gradient(to left, black 50%, white 50%) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
+  color: white;
+}

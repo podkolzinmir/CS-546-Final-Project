@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/podkolzinmir/CS-546-Final-Project/issues"
   },
-  "homepage": "https://github.com/podkolzinmir/CS-546-Final-Project#readme"
+  "homepage": "https://github.com/podkolzinmir/CS-546-Final-Project#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0"
+  }
 }

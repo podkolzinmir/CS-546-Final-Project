@@ -1,3 +1,5 @@
 // import from different /data/ modules
-
-// include module.exports = {}
+const validators = require("./validators");
+module.exports = {
+  validators: validators,
+};
