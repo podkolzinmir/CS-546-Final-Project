@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const data = require("../../data");
+const data = require("../data");
+var bcrypt = require('bcryptjs');
 const validators = data.validators;
 router.get("/", async function (req, res) {
   res.render("differentPages/landingPage", {
