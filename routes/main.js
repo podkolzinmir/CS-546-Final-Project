@@ -13,6 +13,10 @@ router.get("/signup", async function (req, res) {
   res.render("differentPages/Signup");
 });
 
+router.get("/signin", async function (req, res) {
+    res.render("differentPages/SignIn");
+  });
+
 router.post("/signup", async function (req, res) {
   const errors = [];
   const {
@@ -62,4 +66,31 @@ router.post("/signup", async function (req, res) {
   }
 });
 
+router.post("/signin", async function (req, res) {
+    const errors = [];
+    const {
+      username,
+      password
+    } = req.body;
+    if (!validators.isLettersOnly(username))
+      errors.push("Username is missing");
+    if (!validators.isNonEmptyString(password))
+      errors.push("Password is missing");
+   // const hashedPassword = await bcrypt.hash(password, 10);
+  
+    let user = {
+      username: username,
+      password: password
+    };
+    if (errors.length > 0) {
+      return res.status(400).render("differentPages/SignIn", { errors, user });
+    } else {
+      try {
+      } catch (e) {
+        return res
+          .status(500)
+          .render("differentPages/SignIn", { errors: [e], user });
+      }
+    }
+  });
 module.exports = router;
