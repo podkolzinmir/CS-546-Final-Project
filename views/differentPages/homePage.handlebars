@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul.side{
+  list-style-type: none;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+li.side a {
+  display: block;
+  color:black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li.side {
+  text-align: center;
+  border-bottom: 1px solid #555;
+}
+
+li.side:last-child {
+  border-bottom: none;
+}
+
+li.side a.active {
+  background-color: #B794B7;
+  color: white;
+}
+
+li.side a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+ul.top {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li.top {
+  float: right;
+  text-align: center;
+}
+
+li.top a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.top a:hover {
+  background-color: #B794B7;
+}
+
+div.top {
+    padding-top: 10px;
+}
+
+
+h2 {
+    float: left;
+    color: white;
+    padding: 20px;
+    padding-left: 100px;
+    
+    }
+
+</style>
+</head>
+<body>
+
+{{!-- The top bar --}}
+<ul class="top">
+  <li class="top"><a class="active" href="">Edit Interests</a></li>
+  <li class="top"><a href="">Likes</a></li>
+  
+  <li class="top">
+      <div class="top">
+        <form method="POST" action="/search">
+            <label>
+                <input id = "form-body" type="text" name="searchTerm" placeholder="Post Title" value=" "/>
+            </label>
+            <input id = "form-body" type="submit" value="Search" />
+        </form>
+        </div>
+        </li>
+</ul>
+
+
+{{!-- The left side filter --}}
+<ul class = "side">
+  <li class = "side"><a href="" class="active">Filter</a></li>
+  <li class = "side"><a href="">Top News Today</a></li>
+  <li class = "side"><a href="">World news</a></li>
+  <li class = "side"><a href="">Sports</a></li>
+  <li class = "side"><a href="">Politics</a></li>
+  <li class = "side"><a href="">Business</a></li>
+  <li class = "side"><a href="">Tech</a></li>
+  <li class = "side"><a href="">Environment</a></li>
+  <li class = "side"><a href="">Music</a></li>
+  <li class = "side"><a href="">Art</a></li>
+  <li class = "side"><a href="">Film</a></li>
+  <li class = "side"><a href="">Food</a></li>
+  <li class = "side"><a href="">Fashion</a></li>
+  <li class = "side"><a href="">Travel</a></li>
+</ul>
+
+
+{{!-- The feed --}}
+<h2>Feed</h2>
+
+
+
+</body>
+</html>
