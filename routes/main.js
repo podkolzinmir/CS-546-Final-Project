@@ -5,7 +5,7 @@ var bcrypt = require('bcryptjs');
 const validators = data.validators;
 router.get("/", async function (req, res) {
   res.render("differentPages/landingPage", {
-    title: "This is the landing Page",
+    title: "landing Page",
   });
 });
 
