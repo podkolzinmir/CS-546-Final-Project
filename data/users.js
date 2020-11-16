@@ -35,8 +35,8 @@ async function create(name, email, interests, urls, sec_question, sec_answer, pa
   }if(name.lastname == null || typeof name.lastname != 'string' || name.lastname == ''){
     throw "name requires field lastname as a string";
   }
-  const userssCollection = await users();
-  let newBook = {
+  const usersCollection = await users();
+  let newUser = {
     name: name,
     email: email,
     interests: interests,
@@ -45,7 +45,7 @@ async function create(name, email, interests, urls, sec_question, sec_answer, pa
     security_answer: sec_answer,
     password: password
   }
-  const insertInfo = await userssCollection.insertOne(newBook);
+  const insertInfo = await usersCollection.insertOne(newUser);
   if (insertInfo.insertedCount == 0){
     throw 'Could not add user';
   }
