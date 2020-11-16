@@ -1,126 +1,87 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-ul.side{
-  list-style-type: none;
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  border: 1px solid #555;
-}
-
-li.side a {
-  display: block;
-  color:black;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-li.side {
-  text-align: center;
-  border-bottom: 1px solid #555;
-}
-
-li.side:last-child {
-  border-bottom: none;
-}
-
-li.side a.active {
-  background-color: #B794B7;
-  color: white;
-}
-
-li.side a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-}
-
-ul.top {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: black;
-}
-
-li.top {
-  float: right;
-  text-align: center;
-}
-
-li.top a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li.top a:hover {
-  background-color: #B794B7;
-}
-
-div.top {
-    padding-top: 10px;
-}
-
-
-h2 {
-    float: left;
-    color: white;
-    padding: 20px;
-    padding-left: 100px;
-    
-    }
-
-</style>
+  <link rel="stylesheet" href="/public/css/home.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
-<body>
 
-{{!-- The top bar --}}
-<ul class="top">
-  <li class="top"><a class="active" href="">Edit Interests</a></li>
-  <li class="top"><a href="">Likes</a></li>
-  
-  <li class="top">
-      <div class="top">
-        <form method="POST" action="/search">
-            <label>
-                <input id = "form-body" type="text" name="searchTerm" placeholder="Post Title" value=" "/>
-            </label>
-            <input id = "form-body" type="submit" value="Search" />
-        </form>
-        </div>
+<body id="body-home">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-bgg">
+    <a class="navbar-brand" href="http://localhost:3000/" style="color: white;">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
         </li>
-</ul>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Enter Keyword" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter Articles</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="sidebar">
+          <header>Topics</header>
+          <ul>
+            <li><a href="#"> World</a></li>
+            <li><a href="#"> U.S.</a></li>
+            <li><a href="#"> Politics</a></li>
+            <li><a href="#"> Business</a></li>
+            <li><a href="#"> Technology</a></li>
+            <li><a href="#"> Science</a></li>
+            <li><a href="#"> Health</a></li>
+            <li><a href="#"> Sports</a></li>
+            <li><a href="#"> Books</a></li>
+            <li><a href="#"> Style</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body">
+            <h5 class="card-title">TITLE IS HERE </h5>
+            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <div class="row" style="height: 5px;"></div>
+        </div>
+        <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body">
+            <h5 class="card-title">TITLE IS HERE</h5>
+            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body">
+            <h5 class="card-title">TITLE IS HERE</h5>
+            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <p> I am col-lg-3 right</p>
+      </div>
+    </div>
 
-
-{{!-- The left side filter --}}
-<ul class = "side">
-  <li class = "side"><a href="" class="active">Filter</a></li>
-  <li class = "side"><a href="">Top News Today</a></li>
-  <li class = "side"><a href="">World news</a></li>
-  <li class = "side"><a href="">Sports</a></li>
-  <li class = "side"><a href="">Politics</a></li>
-  <li class = "side"><a href="">Business</a></li>
-  <li class = "side"><a href="">Tech</a></li>
-  <li class = "side"><a href="">Environment</a></li>
-  <li class = "side"><a href="">Music</a></li>
-  <li class = "side"><a href="">Art</a></li>
-  <li class = "side"><a href="">Film</a></li>
-  <li class = "side"><a href="">Food</a></li>
-  <li class = "side"><a href="">Fashion</a></li>
-  <li class = "side"><a href="">Travel</a></li>
-</ul>
-
-
-{{!-- The feed --}}
-<h2>Feed</h2>
-
-
+  </div>
 
 </body>
+
 </html>
