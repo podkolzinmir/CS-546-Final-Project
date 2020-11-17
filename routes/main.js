@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 var bcrypt = require('bcryptjs');
 const validators = data.validators;
+const userData = data.users;
 router.get("/", async function (req, res) {
   res.render("differentPages/landingPage", {
     title: "landing Page",
@@ -26,6 +27,8 @@ router.post("/signup", async function (req, res) {
     email,
     password,
     passwordConfirm,
+    sec_question,
+    sec_answer
   } = req.body;
   if (!validators.isLettersOnly(firstName))
     errors.push("First name is missing");
@@ -53,8 +56,18 @@ router.post("/signup", async function (req, res) {
     email: email.toLowerCase(),
     hashedPassword,
     gender: gender,
+    sec_question: sec_question,
+    sec_answer: sec_answer
   };
-  if (errors.length > 0) {
+  try {
+    const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
+    // res.json(newUser);
+} catch (e) {
+  res.status(400).json({ error: `Sign-Up Error!! ${e}`  });;
+}
+
+
+if (errors.length > 0) {
     return res.status(400).render("differentPages/Signup", { errors, user });
   } else {
     try {
