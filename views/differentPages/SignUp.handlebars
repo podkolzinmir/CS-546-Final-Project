@@ -52,8 +52,19 @@
                                 required>
                         </div> <!-- form-group end.// -->
                         <div class="form-group">
+                            <label for="sec_question">Security Question</label>
+                            <input type="text" id="sec_question" class="form-control" placeholder="Please type a Security Question" name="sec_question"
+                                value="{{user.sec_question}}" required>
+                        </div> <!-- form-group end.// -->
+                                                <div class="form-group">
+                            <label for="sec_answer">Security Answer</label>
+                            <input type="text" id="sec_answer" class="form-control" placeholder="Please type a Security Answer to recover Passowrd" name="sec_answer"
+                                value="{{user.sec_answer}}" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
                             <button type="submit" id="register-btn" class="btn btn-block"> Register </button>
                         </div> <!-- form-group// -->
+                        
 
                         {{#if errors}}
                         <ul class="text-danger">

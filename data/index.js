@@ -20,11 +20,12 @@ async function main(){
   }
 }
 
-main();
+// main();
 
 
 
 
 module.exports = {
-  validators: validators
+  validators: validators,
+  users: usersData
 };
