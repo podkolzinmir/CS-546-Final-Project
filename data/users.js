@@ -79,5 +79,6 @@ async function getAll() {
 
 module.exports = {
   create: create,
-  get: get
+  get: get,
+  getAll: getAll
 }

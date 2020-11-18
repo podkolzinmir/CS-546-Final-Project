@@ -48,7 +48,14 @@ async function get(id) {
   }
 }
 
+async function getAll() {
+  const keywordsCollection = await keywords();
+  const keywordsList = await keywordsCollection.find({}).toArray();
+  return keywordsList;
+}
+
 module.exports = {
   create: create,
-  get: get
+  get: get,
+  getAll: getAll
 }
