@@ -74,7 +74,7 @@ router.post("/signup", async function (req, res) {
     return res.redirect("/login");
     
 } catch (e) {
-   res.status(400).json({ error: `Sign-Up Error!! ${e}`  });;
+   return res.status(400).json({ error: `Sign-Up Error!! ${e}`  });;
 }
 
 

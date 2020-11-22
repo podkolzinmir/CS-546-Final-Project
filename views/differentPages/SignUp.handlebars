@@ -9,7 +9,7 @@
                     <h1 class="card-title mt-2 text-center">Registration</h1>
                 </header>
                 <article class="card-body">
-                    <form method="POST" id="register">
+                    <form method="POST" id="register" action="/signup">
                         <div class="form-row">
                             <div class="col form-group">
                                 <label for="firstName">First name </label>
@@ -53,18 +53,20 @@
                         </div> <!-- form-group end.// -->
                         <div class="form-group">
                             <label for="sec_question">Security Question</label>
-                            <input type="text" id="sec_question" class="form-control" placeholder="Please type a Security Question" name="sec_question"
+                            <input type="text" id="sec_question" class="form-control"
+                                placeholder="Please type a Security Question" name="sec_question"
                                 value="{{user.sec_question}}" required>
                         </div> <!-- form-group end.// -->
-                                                <div class="form-group">
+                        <div class="form-group">
                             <label for="sec_answer">Security Answer</label>
-                            <input type="text" id="sec_answer" class="form-control" placeholder="Please type a Security Answer to recover Passowrd" name="sec_answer"
+                            <input type="text" id="sec_answer" class="form-control"
+                                placeholder="Please type a Security Answer to recover Passowrd" name="sec_answer"
                                 value="{{user.sec_answer}}" required>
                         </div> <!-- form-group end.// -->
                         <div class="form-group">
                             <button type="submit" id="register-btn" class="btn btn-block"> Register </button>
                         </div> <!-- form-group// -->
-                        
+
 
                         {{#if errors}}
                         <ul class="text-danger">
@@ -75,7 +77,7 @@
                         {{/if}}
                     </form>
                 </article> <!-- card-body end .// -->
-                <div class="border-top card-body text-center">Already registered? <a href="/signin"
+                <div class="border-top card-body text-center">Already registered? <a href="/login"
                         class=" register-login-link">Log In</a>
                 </div>
             </div> <!-- card.// -->
@@ -83,6 +85,37 @@
 
     </div> <!-- row.//-->
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" hidden>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
+<script>
+    let myForm = document.getElementById("register");
+    let modal_div = document.getElementById("exampleModalCenter");
+    if (myForm) {
+        myForm.addEventListener("submit", (event) => {
+            modal_div.hidden = false;
+        })
+
+    }
+</script>
 <!--container end.//-->

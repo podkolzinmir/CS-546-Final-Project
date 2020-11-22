@@ -51,7 +51,7 @@ async function create(name, email, sec_question, sec_answer, password){
   if (insertInfo.insertedCount == 0){
     throw 'Could not add user';
   }
-  return await get(insertInfo.insertedId.toString());
+  return await get(insertInfo.ops[0].email);
 }
 
 async function get(emailaddress) {
