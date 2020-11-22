@@ -74,11 +74,7 @@ router.post("/signup", async function (req, res) {
     return res.redirect("/login");
     
 } catch (e) {
-   res.status(400).json({ error: `Sign-Up Error!! ${e}`  });;
-}
-
-
-if (errors.length > 0) {
+  if (errors.length > 0) {
     return res.status(400).render("differentPages/Signup", { errors, user });
   } else {
     try {
@@ -88,6 +84,10 @@ if (errors.length > 0) {
         .render("differentPages/Signup", { errors: [e], user });
     }
   }
+}
+
+
+
 });
 
 router.post("/signin", async function (req, res) {

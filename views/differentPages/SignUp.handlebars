@@ -9,7 +9,7 @@
                     <h1 class="card-title mt-2 text-center">Registration</h1>
                 </header>
                 <article class="card-body">
-                    <form method="POST" id="register">
+                    <form method="POST" id="register" action="/signup">
                         <div class="form-row">
                             <div class="col form-group">
                                 <label for="firstName">First name </label>
@@ -75,7 +75,7 @@
                         {{/if}}
                     </form>
                 </article> <!-- card-body end .// -->
-                <div class="border-top card-body text-center">Already registered? <a href="/signin"
+                <div class="border-top card-body text-center">Already registered? <a href="/login"
                         class=" register-login-link">Log In</a>
                 </div>
             </div> <!-- card.// -->
@@ -86,3 +86,15 @@
 
 </div>
 <!--container end.//-->
+<script>
+function pass() {
+    let myForm = document.getElementById("register");
+    var pass_1 = document.forms["myForm"].password.value.length;
+    var pass_2 = document.forms["myForm"].passwordConfirm.value.length;
+    if (pass_1 != pass_2) {
+        alert("the pass and Confirm pass must be equal");
+        return false;
+    }
+    return true;
+}
+</script>
