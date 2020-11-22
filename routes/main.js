@@ -4,6 +4,9 @@ const data = require("../data");
 var bcrypt = require('bcryptjs');
 const validators = data.validators;
 const userData = data.users;
+let validCookies =[];
+
+
 router.get("/", async function (req, res) {
   res.render("differentPages/landingPage", {
     title: "landing Page",
@@ -14,8 +17,15 @@ router.get("/signup", async function (req, res) {
   res.render("differentPages/Signup");
 });
 
-router.get("/signin", async function (req, res) {
-    res.render("differentPages/SignIn");
+router.get("/login", async function (req, res) {
+      if (!validCookies.includes(req.sessionID)) {
+        res.render("differentPages/SignIn");
+        return;
+
+    } else {
+        res.redirect("/home");
+    }
+      
   });
 
 router.post("/signup", async function (req, res) {
@@ -61,9 +71,10 @@ router.post("/signup", async function (req, res) {
   };
   try {
     const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
-    // res.json(newUser);
+    return res.redirect("/login");
+    
 } catch (e) {
-  res.status(400).json({ error: `Sign-Up Error!! ${e}`  });;
+   res.status(400).json({ error: `Sign-Up Error!! ${e}`  });;
 }
 
 
@@ -80,34 +91,93 @@ if (errors.length > 0) {
 });
 
 router.post("/signin", async function (req, res) {
-    const errors = [];
+    console.log(req.body,"Checking Body")
+    // let errors = [];
+    // let hasErrors = false;
     const {
       username,
       password
     } = req.body;
-    if (!validators.isLettersOnly(username))
-      errors.push("Username is missing");
-    if (!validators.isNonEmptyString(password))
-      errors.push("Password is missing");
-   // const hashedPassword = await bcrypt.hash(password, 10);
-  
+    if (!validators.isValidEmail(username)){
+      res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Enter valid Email-ID!!"});
+      return;
+    }
+    if (!validators.isNonEmptyString(password)){
+      res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Enter valid Password!!"});
+      return;
+    }
     let user = {
       username: username,
       password: password
     };
-    if (errors.length > 0) {
-      return res.status(400).render("differentPages/SignIn", { errors, user });
-    } else {
-      try {
-      } catch (e) {
-        return res
-          .status(500)
-          .render("differentPages/SignIn", { errors: [e], user });
-      }
+
+    try {
+      const checkuser = await userData.get(user.username);
+      // res.json(newUser);
+      console.log(checkuser,"AA")
+      console.log(user,"BB")
+      
+      if (!req.body.username || !req.body.password) {
+        res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Please enter Username and Password"});
+        return;
     }
+    
+    else if (!checkuser) {
+        res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Incorrect Username!!"});
+        return;
+    }
+
+    // else if(checkuser.hashedPassword == undefined || req.body.username == undefined || req.body.password== undefined) {
+        // res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Please enter Username and Password or Incorrect Username!!"});
+        // return;
+    // }
+    
+    else {
+        const pwd = await bcrypt.compare(req.body.password, checkuser.password);
+        if (!pwd) {
+            res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Error: Entered password does not match"});
+            return;
+        }
+        validCookies.push(req.sessionID);
+        req.session.user = checkuser;
+        res.redirect("/home");
+        return;
+        
+
+    }
+
+  } catch (e) {
+    res.status(400).json({ error: `User not found!! ${e}`  });;
+  }
+
+
+  //   if (errors.length > 0) {
+  //     return res.status(400).render("differentPages/SignIn", { errors, user });
+  //   } else {
+  //     try {
+  //     } catch (e) {
+  //       return res
+  //         .status(500)
+  //         .render("differentPages/SignIn", { errors: [e], user });
+  //     }
+  //   }
   });
 
-module.exports = router;
+
+router.get("/logout", async(req, res) => {
+    res.clearCookie("AuthCookie");
+    for (i = 0; i < validCookies.length; i++) {
+        if (validCookies[i] == req.sessionID) {
+            delete validCookies[i];
+        }
+    }
+    req.session.user = "";
+    req.session.destroy();
+    res.redirect("/login");
+    return;
+});
 
 module.exports = router;
+
+
 
