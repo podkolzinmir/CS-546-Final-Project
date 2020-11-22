@@ -54,7 +54,14 @@ async function get(id) {
   }
 }
 
+async function getAll() {
+  const articlesCollection = await articles();
+  const articlesList = await articlesCollection.find({}).toArray();
+  return articlesList;
+}
+
 module.exports = {
   create: create,
-  get: get
+  get: get,
+  getAll: getAll
 }
