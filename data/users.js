@@ -54,14 +54,14 @@ async function create(name, email, sec_question, sec_answer, password){
   return await get(insertInfo.insertedId.toString());
 }
 
-async function get(id) {
-    if (id == null || typeof id != 'string'){
-      throw "id must be a string";
+async function get(emailaddress) {
+    if (emailaddress == null || typeof emailaddress != 'string'){
+      throw "Email should be entered!!";
     }
     try{
-      const objId = new ObjectId(id);
+      // const objId = new ObjectId(id);
       const usersCollection = await users();
-      const user = await usersCollection.findOne({ _id: objId });
+      const user = await usersCollection.findOne({ email: emailaddress });
       if (user == null){
         throw "user not found";
       }
