@@ -91,7 +91,7 @@ router.post("/signup", async function (req, res) {
 });
 
 router.post("/signin", async function (req, res) {
-    console.log(req.body,"Checking Body")
+    // console.log(req.body,"Checking Body")
     // let errors = [];
     // let hasErrors = false;
     const {
@@ -114,8 +114,8 @@ router.post("/signin", async function (req, res) {
     try {
       const checkuser = await userData.get(user.username);
       // res.json(newUser);
-      console.log(checkuser,"AA")
-      console.log(user,"BB")
+      // console.log(checkuser,"AA")
+      // console.log(user,"BB")
       
       if (!req.body.username || !req.body.password) {
         res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Please enter Username and Password"});
