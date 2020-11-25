@@ -66,30 +66,32 @@
       </div>
       <div class="col-lg-6">
         <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-            <h5 class="card-title">TITLE IS HERE </h5>
-            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-          <div class="row" style="height: 5px;"></div>
+          <h5 class="card-header">Featured Articles Based on Your Interests:</h5>
+         
         </div>
-        <div class="card">
+        
+        {{#if articles}}
+            {{!-- <ul class="text-danger"> --}}
+              {{#each articles}}
+                  <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                      <a href="{{this.link}}" target="_blank"><h5 class="card-title">{{this.title}}</h5></a>
+                      <p class="card-text">{{{this.content}}}</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                    <div class="row" style="height: 5px;"></div>
+                  </div>
+                {{/each}}
+              {{/if}}
+        {{!-- <div class="card">
           <h5 class="card-header">Featured</h5>
           <div class="card-body">
             <h5 class="card-title">TITLE IS HERE</h5>
             <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
-        </div>
-        <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-            <h5 class="card-title">TITLE IS HERE</h5>
-            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+        </div> --}}
       </div>
       <div class="col-lg-3">
         <p> I am col-lg-3 right</p>
