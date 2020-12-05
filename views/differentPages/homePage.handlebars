@@ -8,7 +8,7 @@
 
 <body id="body-home">
   <nav class="navbar navbar-expand-lg navbar-light navbar-bgg">
-    <a class="navbar-brand" href="http://localhost:3000/" style="color: white;">LOGO</a>
+    <a class="navbar-brand" href="#" style="color: white;">LOGO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,7 +20,7 @@
           <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
+          <a class="nav-link" href="/home/userprofile" style="color: white;">User Profile</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -59,11 +59,12 @@
             {{!-- <ul class="text-danger"> --}}
               {{#each articles}}
                   <div class="card">
-                    <h5 class="card-header">Featured</h5>
+                    <h5 class="card-header">Topic : Politics</h5>
                     <div class="card-body">
                       <a href="{{this.link}}" target="_blank"><h5 class="card-title">{{this.title}}</h5></a>
-                      <p class="card-text">{{{this.content}}}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
+                      
+                      <a href="#" class="btn btn-primary">Summary</a>
                     </div>
                     <div class="row" style="height: 5px;"></div>
                   </div>

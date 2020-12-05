@@ -19,6 +19,7 @@
   "homepage": "https://github.com/podkolzinmir/CS-546-Final-Project#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "aylien_textapi": "^0.7.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

@@ -14,7 +14,13 @@ router.get("/", async function (req, res) {
 });
 
 router.get("/signup", async function (req, res) {
-  res.render("differentPages/Signup");
+  if (!validCookies.includes(req.sessionID)) {
+    res.render("differentPages/SignUp");
+    return;
+
+} else {
+    res.redirect("/home");
+}
 });
 
 router.get("/login", async function (req, res) {
