@@ -47,6 +47,10 @@ ul li:hover a {
 .card {
   margin-top: 10px;
 }
-/* #staticnav{
-  position: fixed;
-} */
+#heart {
+  font-size: 25px;
+  float: right;
+  }
+.red {
+  color: red;
+}
