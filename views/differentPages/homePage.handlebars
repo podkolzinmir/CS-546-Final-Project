@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/public/css/home.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body id="body-home">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-bgg">
+    <a class="navbar-brand" href="http://localhost:3000/" style="color: white;">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
+        </li>
+        <li class="nav-item">
+          <div class="input-group">
+						<div class="input-group-btn">
+							{{!-- <button tabindex="-1" class="btn btn-default" type="button" style="color: white;">Your Interests</button> --}}
+							<button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="color: white;">Your Interests</button>
+							<span class="caret"></span>
+							</button>
+							<ul role="menu" class="dropdown-menu">
+								<li class="divider"></li>
+								<li>
+								<input type="checkbox">
+								<span class="lbl"> Tech</span>
+							</li>
+								<li>
+								<input type="checkbox"><span class="lbl">
+								Science</span>
+								</li>
+								<li>
+								<input type="checkbox"><span class="lbl">
+								Music</span>
+								</li>
+								<li>
+								<input type="checkbox"><span class="lbl">
+								Art</span>
+								</li>
+							</ul>
+        </li>
+      </ul>
+        <form autocomplete="off" action="/action_page.php">
+          <div class="autocomplete" style="width:300px;">
+          <input id="myInput" type="text" name="Search" placeholder="Search Articles">
+          </div>
+        {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter Articles</button> --}}
+        <input type="submit" value="Filter Articles">
+      </form>
+       <script src="public/JS/search.js"></script>
+    </div>
+</form>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="sidebar">
+          <header>Topics</header>
+          <ul>
+            <li><a href="#"> World</a></li>
+            <li><a href="#"> U.S.</a></li>
+            <li><a href="#"> Politics</a></li>
+            <li><a href="#"> Business</a></li>
+            <li><a href="#"> Technology</a></li>
+            <li><a href="#"> Science</a></li>
+            <li><a href="#"> Health</a></li>
+            <li><a href="#"> Sports</a></li>
+            <li><a href="#"> Books</a></li>
+            <li><a href="#"> Style</a></li>
+            <li><a href="/logout"> Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <h5 class="card-header">Featured Articles Based on Your Interests:</h5>
+         
+        </div>
+        
+        {{#if articles}}
+            {{!-- <ul class="text-danger"> --}}
+              {{#each articles}}
+                  <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                      <a href="{{this.link}}" target="_blank"><h5 class="card-title">{{this.title}}</h5></a>
+                      <p class="card-text">{{{this.content}}}</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                    <div class="row" style="height: 5px;"></div>
+                  </div>
+                {{/each}}
+              {{/if}}
+        {{!-- <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body">
+            <h5 class="card-title">TITLE IS HERE</h5>
+            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div> --}}
+      </div>
+      <div class="col-lg-3">
+        <p> I am col-lg-3 right</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
