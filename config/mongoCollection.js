@@ -12,4 +12,8 @@ const getCollectionFn = (collection) => {
   };
 };
 
-module.exports = {};
+module.exports = {
+  users: getCollectionFn('users'),
+  keywords: getCollectionFn('keywords'),
+  articles: getCollectionFn('articles')
+};
