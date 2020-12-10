@@ -4,6 +4,7 @@
 <head>
   <link rel="stylesheet" href="/public/css/home.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  
 </head>
 
 <body id="body-home">
@@ -59,14 +60,21 @@
             {{!-- <ul class="text-danger"> --}}
               {{#each articles}}
                   <div class="card">
-                    <h5 class="card-header">Topic : Politics</h5>
+                    <h5 class="card-header" id="topic">Topic : Politics</h5>
                     <div class="card-body">
-                      <a href="{{this.link}}" target="_blank"><h5 class="card-title">{{this.title}}</h5></a>
+                      <a href="{{this.link}}" target="_blank"><h5 class="card-title" id="content">{{this.title}}</h5></a>
                       {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
                       
                       <a href="#" class="btn btn-primary">Summary</a>
-                      <p class="card-text">{{{this.content}}}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="#" class="btn btn-primary" >Read Aloud</a>
+                      {{!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=AavQenOY">
+                      {{!-- function speech(){ --}}
+                          {{!-- responsiveVoice.speak(`The title of the Article is`+ {{this.title}}); --}}
+                      {{!-- } --}}
+                      {{!-- </script> --}} --}}
+                      
+                      {{!-- <p class="card-text">{{{this.content}}}</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a> --}}
                         
                          <!-- Add icon library -->
                           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">

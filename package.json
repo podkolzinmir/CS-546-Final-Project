@@ -27,6 +27,7 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "gnews": "^1.0.3",
-    "mongodb": "^3.6.3"
+    "mongodb": "^3.6.3",
+    "say": "^0.16.0"
   }
 }
