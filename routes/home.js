@@ -28,7 +28,7 @@ router.get("/", async function (req, res) {
       
       const ArticleData = await getarticles(interests[item]);
       ArticleData.forEach(elements => articles.push(elements) );
-      // console.log(articles)
+      console.log(articles)
     }
 
     // console.log(articles[0])

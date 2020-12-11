@@ -66,12 +66,20 @@
                       {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
                       
                       <a href="#" class="btn btn-primary">Summary</a>
-                      <a href="#" class="btn btn-primary" >Read Aloud</a>
-                      {{!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=AavQenOY">
-                      {{!-- function speech(){ --}}
-                          {{!-- responsiveVoice.speak(`The title of the Article is`+ {{this.title}}); --}}
-                      {{!-- } --}}
-                      {{!-- </script> --}} --}}
+                      <a href="#" class="btn btn-primary" onclick="readOutLoud(`{{this.title}}`)">Read Aloud</a>
+                      <script>
+                        function readOutLoud(message) {
+                            var speech = new SpeechSynthesisUtterance();
+
+                            // Set the text and voice attributes.
+                            speech.text = message;
+                            speech.volume = 1;
+                            speech.rate = 1;
+                            speech.pitch = 0.5;
+
+                            window.speechSynthesis.speak(speech);
+                        }
+                      </script> 
                       
                       {{!-- <p class="card-text">{{{this.content}}}</p>
                       <a href="#" class="btn btn-primary">Go somewhere</a> --}}

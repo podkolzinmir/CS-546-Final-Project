@@ -66,6 +66,14 @@ router.post("/signup", async function (req, res) {
     errors.push("Password and confirmation don't match");
   const hashedPassword = await bcrypt.hash(password, 10);
 
+  // const checkuser = await userData.get(email.toLowerCase);
+
+  // if(checkuser){
+  //   res.status(401).render("differentPages/SignUp", {hasErrors: true, errors: "Email-ID already exists!!"});
+  //   return;
+  // }
+
+
   let user = {
     firstName: firstName,
     lastName: lastName,
