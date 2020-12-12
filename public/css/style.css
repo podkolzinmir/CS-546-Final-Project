@@ -1,10 +1,5 @@
 #body-main {
-  background: linear-gradient(
-      to right,
-      rgba(255, 0, 0, 0),
-      rgba(255, 0, 0, 0.2)
-    )
-    100%;
+  background-color: #efefef;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -54,12 +49,7 @@ span.psw {
   background-color: #f44336;
 }
 body {
-  background: linear-gradient(
-      to right,
-      rgba(255, 0, 0, 0),
-      rgba(255, 0, 0, 0.2)
-    )
-    100%;
+  background-color: #efefef;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
