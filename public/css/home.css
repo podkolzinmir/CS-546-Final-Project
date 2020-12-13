@@ -5,11 +5,13 @@
   text-decoration: none;
 }
 .sidebar {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
+  margin-top: 20%;
+  margin-left: 0%;
   width: 250px;
-  height: 100%;
-  background: #292b2c;
+  /* height: 100%; */
+  background: #272635;
 }
 .sidebar header {
   font-size: 22px;
@@ -39,7 +41,7 @@ ul li:hover a {
   margin-right: 16px;
 }
 .navbar-bgg {
-  background-color: #292b2c;
+  background-color: #272635;
 }
 .nav-link {
   color: white;
@@ -50,8 +52,12 @@ ul li:hover a {
 #heart {
   font-size: 25px;
   float: right;
-  }
-
+}
 .red {
   color: red;
+}
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }

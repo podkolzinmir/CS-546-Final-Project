@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 var bcrypt = require('bcryptjs');
+const { addInterests } = require("../data/users");
 const validators = data.validators;
 const userData = data.users;
 let validCookies =[];
@@ -189,6 +190,18 @@ router.get("/logout", async(req, res) => {
     req.session.destroy();
     res.redirect("/login");
     return;
+});
+
+
+router.post("/addInterests", async(req, res) => {
+  try {
+    id = req.session.user._id;
+    interests = Object.values(req.body);
+    await addInterests(id,interests);
+    res.redirect("/home");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

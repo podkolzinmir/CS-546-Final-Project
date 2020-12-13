@@ -108,16 +108,14 @@
     </div>
 
 </div>
-<!--container end.//-->
 <script>
-function pass() {
     let myForm = document.getElementById("register");
-    var pass_1 = document.forms["myForm"].password.value.length;
-    var pass_2 = document.forms["myForm"].passwordConfirm.value.length;
-    if (pass_1 != pass_2) {
-        alert("the pass and Confirm pass must be equal");
-        return false;
+    let modal_div = document.getElementById("exampleModalCenter");
+    if (myForm) {
+        myForm.addEventListener("submit", (event) => {
+            modal_div.hidden = false;
+        })
+
     }
-    return true;
-}
 </script>
+<!--container end.//-->
