@@ -25,14 +25,16 @@ async function addKeywords(keys1, keys2, url) {
   }
 }
 
-async function create(url, keywordsList, wordCount, readTime, title, date){
-  if(url == null || keywordsList == null || wordCount == null || readTime == null || title == null || date == null){
+async function create(url, keywordsList,title, date){
+  if(url == null || keywordsList == null || title == null || date == null){
     throw "requires fields url, keywordsList, wordCount, readTime, title, date";
   }if(typeof url != 'string' || typeof title != 'string' || typeof date != 'string' || url == '' || title == '' || date == ''){
     throw "fields url, title, date must all be nonempty strings";
-  }if(typeof wordCount != 'number' || typeof readTime != 'number'){
-    throw "fields wordCount and readTime must be numbers.";
-  }if(!(Array.isArray(keywordsList)) || keywordsList.length == 0){
+  }
+  // if(typeof wordCount != 'number' || typeof readTime != 'number'){
+  //   throw "fields wordCount and readTime must be numbers.";
+  // } 
+  if(!(Array.isArray(keywordsList)) || keywordsList.length == 0){
     throw "keywordsList must be a nonempty array";
   }
   var keywordFail = true;
@@ -48,8 +50,6 @@ async function create(url, keywordsList, wordCount, readTime, title, date){
   let newArticle = {
     article_URL: url,
     keywords: keywordsList,
-    number_of_words: wordCount,
-    read_time: readTime,
     title: title,
     date_published: date
   }

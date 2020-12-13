@@ -70,7 +70,7 @@
           </div>
           <div class="col-lg-6">
             <div class="card">
-              <h5 class="card-header">Featured Articles Based on Your Interests:</h5>
+              <label class="card-header" id="topic">Featured Articles Based on Your Interests:</label>
 
             </div>
 
@@ -78,13 +78,13 @@
             {{!-- <ul class="text-danger"> --}}
               {{#each articles}}
                   <div class="card">
-                    <h5 class="card-header" id="topic">Topic : {{this.keyword}}</h5>
+                    <label class="card-header" id="topic">Topic : {{this.keyword}}</label>
                     <div class="card-body">
-                      <a href="{{this.link}}" target="_blank"><h5 class="card-title" id="content">{{this.title}}</h5></a>
+                      <a href="{{this.link}}" target="_blank"><label class="card-title" id="content">{{this.title}}</label></a>
                       {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
-                      
-                      <a href="#" class="btn btn-primary">Summary</a>
-                      <a href="#" class="btn btn-primary" onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read Aloud</a>
+                      <br>
+                      <a href="#" class="btn btn-primary" id="summary_btn">Summary</a>
+                      <a href="#" class="btn btn-primary" id="read_btn" onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read Aloud</a>
                       <script>
                         function readOutLoud(message) {
                             var speech = new SpeechSynthesisUtterance();
@@ -137,7 +137,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Welcome! Please Tell Us Your Interests</h5>
+                <label class="modal-title" id="exampleModalLongTitle">Welcome! Please Tell Us Your Interests</label>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

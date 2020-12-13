@@ -3,6 +3,7 @@ const router = express.Router();
 const news = require('gnews');
 const data = require("../data");
 const keywordb = data.keywords;
+const articlesdb = require("../data/articles");
 
 var AYLIENTextAPI = require('aylien_textapi');
     var textapi = new AYLIENTextAPI({
@@ -34,8 +35,12 @@ router.get("/", async function (req, res) {
       const ArticleData = await getarticles(interests[item]);
       ArticleData.forEach(v => {v.keyword = interests[item];});
       ArticleData.forEach(elements => articles.push(elements) );
-      
-    
+    }
+    console.log(articles)
+    for (const i of articles)
+    {
+      // console
+      await articlesdb.create(i.link,[i.keyword], i.title,i.pubDate);
     }
     res.render("differentPages/homePage",{articles: articles, interests_length: interests.length});
   });
