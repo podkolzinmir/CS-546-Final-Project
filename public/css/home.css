@@ -11,7 +11,7 @@
   margin-left: 0%;
   width: 250px;
   /* height: 100%; */
-  background: #3a3857;
+  background: #272635;
 }
 .sidebar header {
   font-size: 22px;
@@ -41,7 +41,7 @@ ul li:hover a {
   margin-right: 16px;
 }
 .navbar-bgg {
-  background-color: #3a3857;
+  background-color: #272635;
 }
 .nav-link {
   color: white;
