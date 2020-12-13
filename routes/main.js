@@ -15,7 +15,13 @@ router.get("/", async function (req, res) {
 });
 
 router.get("/signup", async function (req, res) {
-  res.render("differentPages/Signup");
+  if (!validCookies.includes(req.sessionID)) {
+    res.render("differentPages/SignUp");
+    return;
+
+} else {
+    res.redirect("/home");
+}
 });
 
 router.get("/login", async function (req, res) {
@@ -60,6 +66,14 @@ router.post("/signup", async function (req, res) {
   if (password !== passwordConfirm)
     errors.push("Password and confirmation don't match");
   const hashedPassword = await bcrypt.hash(password, 10);
+
+  // const checkuser = await userData.get(email.toLowerCase);
+
+  // if(checkuser){
+  //   res.status(401).render("differentPages/SignUp", {hasErrors: true, errors: "Email-ID already exists!!"});
+  //   return;
+  // }
+
 
   let user = {
     firstName: firstName,

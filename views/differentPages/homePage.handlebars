@@ -76,32 +76,46 @@
 
             {{#if articles}}
             {{!-- <ul class="text-danger"> --}}
-            {{#each articles}}
-            <div class="card">
-              <h5 class="card-header">Featured</h5>
-              <div class="card-body">
-                <a href="{{this.link}}" target="_blank">
-                  <h5 class="card-title">{{this.title}}</h5>
-                </a>
-                <p class="card-text">{{{this.content}}}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+              {{#each articles}}
+                  <div class="card">
+                    <h5 class="card-header" id="topic">Topic : {{this.keyword}}</h5>
+                    <div class="card-body">
+                      <a href="{{this.link}}" target="_blank"><h5 class="card-title" id="content">{{this.title}}</h5></a>
+                      {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
+                      
+                      <a href="#" class="btn btn-primary">Summary</a>
+                      <a href="#" class="btn btn-primary" onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read Aloud</a>
+                      <script>
+                        function readOutLoud(message) {
+                            var speech = new SpeechSynthesisUtterance();
 
-                <!-- Add icon library -->
-                <link rel="stylesheet"
-                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-                <i onclick="myFunction(this)" id="heart" class="fa fa-heart"></i>
-                <script>
-                  function myFunction(x) {
-                    x.classList.toggle("red");
-                  }     
-                </script>
+                            // Set the text and voice attributes.
+                            speech.text = message;
+                            speech.volume = 1;
+                            speech.rate = 1;
+                            speech.pitch = 0.5;
 
-              </div>
-              <div class="row" style="height: 5px;"></div>
-            </div>
-            {{/each}}
-            {{/if}}
-            {{!-- <div class="card">
+                            window.speechSynthesis.speak(speech);
+                        }
+                      </script> 
+                      
+                      {{!-- <p class="card-text">{{{this.content}}}</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                        
+                         <!-- Add icon library -->
+                          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
+                          <i onclick="myFunction(this)" id="heart" class="fa fa-heart"></i>
+                            <script>
+                              function myFunction(x) {
+                              x.classList.toggle("red"); }     
+                            </script>
+                        
+                    </div>
+                    <div class="row" style="height: 5px;"></div>
+                  </div>
+                {{/each}}
+              {{/if}}
+        {{!-- <div class="card">
           <h5 class="card-header">Featured</h5>
           <div class="card-body">
             <h5 class="card-title">TITLE IS HERE</h5>

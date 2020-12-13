@@ -19,6 +19,7 @@
   "homepage": "https://github.com/podkolzinmir/CS-546-Final-Project#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "aylien_textapi": "^0.7.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -26,6 +27,7 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "gnews": "^1.0.3",
-    "mongodb": "^3.6.3"
+    "mongodb": "^3.6.3",
+    "say": "^0.16.0"
   }
 }
