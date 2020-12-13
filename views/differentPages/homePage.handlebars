@@ -88,7 +88,9 @@
                       <script>
                         function readOutLoud(message) {
                             var speech = new SpeechSynthesisUtterance();
-
+                            var voices = window.speechSynthesis.getVoices();
+                            speech.default = false;
+                            speech.voice = voices.filter(function(voice) { return voice.name == 'Google US English Female'; })[0];
                             // Set the text and voice attributes.
                             speech.text = message;
                             speech.volume = 1;

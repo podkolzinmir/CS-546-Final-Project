@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const news = require('gnews');
+const data = require("../data");
+const keywordb = data.keywords;
 
 var AYLIENTextAPI = require('aylien_textapi');
     var textapi = new AYLIENTextAPI({
