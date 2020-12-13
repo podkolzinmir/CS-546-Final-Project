@@ -39,8 +39,10 @@ router.get("/", async function (req, res) {
     console.log(articles)
     for (const i of articles)
     {
-      // console
-      await articlesdb.create(i.link,[i.keyword], i.title,i.pubDate);
+      let checkarticle = await articlesdb.getByUrl(i.link);
+      if (!checkarticle){
+        await articlesdb.create(i.link,[i.keyword], i.title,i.pubDate);
+      }
     }
     res.render("differentPages/homePage",{articles: articles, interests_length: interests.length});
   });
