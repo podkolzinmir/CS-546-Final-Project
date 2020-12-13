@@ -78,6 +78,22 @@ async function get(id) {
   }
 }
 
+async function getByUrl(url) {
+    if (url == null || typeof url != 'string'){
+      throw "requires argument url";
+    }
+    try{
+      const articlesCollection = await articles();
+      const article = await articlesCollection.findOne({ article_URL: url });
+      if (article == null){
+        throw "article not found";
+      }
+      return article;
+  }catch(e){
+    throw "article not found";
+  }
+}
+
 async function getAll() {
   const articlesCollection = await articles();
   const articlesList = await articlesCollection.find({}).toArray();
@@ -87,5 +103,6 @@ async function getAll() {
 module.exports = {
   create: create,
   get: get,
-  getAll: getAll
+  getAll: getAll,
+  getByUrl: getByUrl
 }
