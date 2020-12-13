@@ -101,9 +101,7 @@ async function getById(id) {
 async function updateInterests(id, newInterests){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
-  }if(!(Array.isArray(newInterests)) || newInterests.length == 0){
-     throw "interests must be a nonempty array";
-   }
+  }
   try{
     var interestFail = true;
     for(i=0;i<newInterests.length;i++){

@@ -27,7 +27,7 @@ async function main(){
     //console.log(updatedURLs1);
     //const updatedURLs2 = await keywordsData.addUrls(user1._id.toString(), ["https://techcrunch.com/2020/10/27/wyze-launches-version-3-of-its-20-security-camera/"]);
     //console.log(updatedURLs2);
-    const removedInterests = await usersData.removeInterests('5fb2b55c1b93094b145200dd', []);
+    const removedInterests = await usersData.updateInterests('5fb2b55c1b93094b145200dd', []);
     console.log(removedInterests);
     //const removedUrls = await usersData.removeUrls(user1._id.toString(), ["google", "www.github.com", "www.xcode.com"]);
     //console.log(removedUrls);
