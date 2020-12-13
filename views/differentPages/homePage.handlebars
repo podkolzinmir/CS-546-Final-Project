@@ -60,13 +60,13 @@
             {{!-- <ul class="text-danger"> --}}
               {{#each articles}}
                   <div class="card">
-                    <h5 class="card-header" id="topic">Topic : Politics</h5>
+                    <h5 class="card-header" id="topic">Topic : {{this.keyword}}</h5>
                     <div class="card-body">
                       <a href="{{this.link}}" target="_blank"><h5 class="card-title" id="content">{{this.title}}</h5></a>
                       {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
                       
                       <a href="#" class="btn btn-primary">Summary</a>
-                      <a href="#" class="btn btn-primary" onclick="readOutLoud(`{{this.title}}`)">Read Aloud</a>
+                      <a href="#" class="btn btn-primary" onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read Aloud</a>
                       <script>
                         function readOutLoud(message) {
                             var speech = new SpeechSynthesisUtterance();

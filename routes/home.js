@@ -8,10 +8,10 @@ var AYLIENTextAPI = require('aylien_textapi');
     application_key: "YOUR_APP_KEY"
     });
 
-
+let num = 0
 
 const getarticles = async (keyword) => {
-  const starship = await news.search(keyword,{n : 3});
+  const starship = await news.search(keyword,{n : num});
   
   return starship;
   // for (let article of starship) {
@@ -24,12 +24,18 @@ router.get("/", async function (req, res) {
     let interests = req.session.user.interests;
     let articles=[];
 
+    if (interests.length < 4){num = 5};
+    if (interests.length >=4){num = 3};
+
     for(let item in interests){
       
       const ArticleData = await getarticles(interests[item]);
+      ArticleData.forEach(v => {v.keyword = interests[item];});
       ArticleData.forEach(elements => articles.push(elements) );
-      console.log(articles)
+      
+    
     }
+
 
     // console.log(articles[0])
     // textapi.summarize({
@@ -44,7 +50,7 @@ router.get("/", async function (req, res) {
     // });
 
 
-    res.render("differentPages/homePage",{articles: articles, keyword:"Politics"});
+    res.render("differentPages/homePage",{articles: articles});
   });
 
 router.get("/userprofile", async function(req, res){
