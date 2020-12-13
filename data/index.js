@@ -31,8 +31,8 @@ async function main(){
     //console.log(removedInterests);
     //const removedUrls = await usersData.removeUrls(user1._id.toString(), ["google", "www.github.com", "www.xcode.com"]);
     //console.log(removedUrls);
-    //const getArticleByUrl = await articlesData.getByUrl('https://www.grandforksherald.com/business/6796568-Digi-Keys-executive-vice-president-recognized-as-Notable-Woman-in-Technology')
-    //console.log(getArticleByUrl);
+    const getArticleByUrl = await articlesData.getByUrl('https://www.grandforksherald.com/business/6796568-Digi-Keys-executive-vice-president-recognized-as-Notable-Woman-in-Technology')
+    console.log(getArticleByUrl);
 
 
   }catch(e){

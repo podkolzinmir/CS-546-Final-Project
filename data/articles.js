@@ -33,7 +33,7 @@ async function create(url, keywordsList,title, date){
   }
   // if(typeof wordCount != 'number' || typeof readTime != 'number'){
   //   throw "fields wordCount and readTime must be numbers.";
-  // } 
+  // }
   if(!(Array.isArray(keywordsList)) || keywordsList.length == 0){
     throw "keywordsList must be a nonempty array";
   }
