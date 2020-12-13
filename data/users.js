@@ -103,23 +103,14 @@ async function updateInterests(id, newInterests){
     throw "id must be a string";
   }
   try{
-    var interestFail = true;
-    for(i=0;i<newInterests.length;i++){
-      if(typeof newInterests[i] == 'string' && newInterests[i] != ''){
-        interestFail = false;
-      }
-    }if(interestFail == true){
-      throw "at least one element of interests must be a nonempty string.";
-    }
     const objId = new ObjectId(id);
     const usersCollection = await users();
     const user = await usersCollection.findOne({ _id: objId });
     if (user == null){
       throw "user not found";
     }
-    var updatedInterests = user.interests
     let updatedUser = {
-      interests: updatedInterests
+      interests: newInterests
     }
     const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
     return getById(id);
