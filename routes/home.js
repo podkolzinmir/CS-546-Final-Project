@@ -20,7 +20,7 @@ router.get("/", async function (req, res) {
       const ArticleData = await getarticles(interests[1]);
       articles = ArticleData;
     }
-    res.render("differentPages/homePage",{articles: articles});
+    res.render("differentPages/homePage",{articles: articles, interests_length: interests.length});
   });
 
 router.get("/userprofile", async function(req, res){
