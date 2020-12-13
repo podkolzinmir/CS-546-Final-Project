@@ -182,7 +182,16 @@ router.get("/logout", async(req, res) => {
 router.post("/addInterests", async(req, res) => {
   try {
     id = req.session.user._id;
-    interests = Object.values(req.body);
+    interests = [];
+    if(req.body.interests1){
+      interests.push(req.body.interests1);
+    }
+    if(req.body.interests2){
+      interests.push(req.body.interests2);
+    }
+    if(req.body.interests3){
+      interests.push(req.body.interests3);
+    }
     await addInterests(id,interests);
     res.redirect("/home");
   } catch (error) {
