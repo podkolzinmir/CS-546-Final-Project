@@ -30,6 +30,15 @@ router.get("/", async function (req, res) {
     if (interests.length < 4){num = 5};
     if (interests.length >=4){num = 3};
 
+    // if(!interests || interests == null){
+
+    //   const ArticleData = await getarticles();
+    //   ArticleData.forEach(v => {v.keyword = interests[item];});
+    //   ArticleData.forEach(elements => articles.push(elements) );
+
+    // }
+    
+    
     for(let item in interests){
       
       const ArticleData = await getarticles(interests[item]);
