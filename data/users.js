@@ -98,47 +98,21 @@ async function getById(id) {
   }
 }
 
-async function addInterests(id, newInterests){
+async function updateInterests(id, newInterests){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
-  }if(!(Array.isArray(newInterests)) || newInterests.length == 0){
-     throw "interests must be a nonempty array";
-   }
+  }
   try{
-    var interestFail = true;
-    for(i=0;i<newInterests.length;i++){
-      if(typeof newInterests[i] == 'string' && newInterests[i] != ''){
-        interestFail = false;
-      }
-    }if(interestFail == true){
-      throw "at least one element of interests must be a nonempty string.";
-    }
     const objId = new ObjectId(id);
     const usersCollection = await users();
     const user = await usersCollection.findOne({ _id: objId });
     if (user == null){
       throw "user not found";
     }
-    var interestFound;
-    var updatedInterests = user.interests
-    for(i=0;i<newInterests.length;i++){
-      interestFound = false;
-      for(j=0;j<user.interests.length;j++){
-        if(newInterests[i]==user.interests[j]){
-          interestFound = true;
-        }
-      }
-      if(interestFound==false){
-        updatedInterests.push(newInterests[i]);
-      }
-    }
     let updatedUser = {
-      interests: updatedInterests
+      interests: newInterests
     }
     const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
-    if (updateResult.modifiedCount == 0) {
-        throw "no new interests";
-    }
     return getById(id);
   }catch(e){
     throw "failed to update user";
@@ -188,50 +162,6 @@ async function addUrls(id, newUrls){
    return getById(id);
   try{
 
-  }catch(e){
-    throw "failed to update user";
-  }
-}
-
-async function removeInterests(id, interestsToRemove){
-  if (id == null || typeof id != 'string'){
-    throw "id must be a string";
-  }if(!(Array.isArray(interestsToRemove)) || interestsToRemove.length == 0){
-     throw "interests must be a nonempty array";
-   }
-   var interestFail = true;
-   for(i=0;i<interestsToRemove.length;i++){
-     if(typeof interestsToRemove[i] == 'string' && interestsToRemove[i] != ''){
-       interestFail = false;
-     }
-   }if(interestFail == true){
-     throw "at least one element of interests must be a nonempty string.";
-   }
-  try{
-    const objId = new ObjectId(id);
-    const usersCollection = await users();
-    const user = await usersCollection.findOne({ _id: objId });
-    if (user == null){
-      throw "user not found";
-    }
-    var interestFound;
-    var updatedInterests = user.interests;
-    var interestsIndex = [];
-    for(i=0;i<user.interests.length;i++){
-      for(j=0;j<interestsToRemove.length;j++){
-        if(user.interests[i]==interestsToRemove[j]){
-          updatedInterests.remove(user.interests[i])
-        }
-      }
-    }
-    let updatedUser = {
-      interests: updatedInterests
-    }
-    const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
-    if (updateResult.modifiedCount == 0) {
-        throw "no new interests";
-    }
-    return getById(id);
   }catch(e){
     throw "failed to update user";
   }
@@ -293,8 +223,7 @@ module.exports = {
   create: create,
   get: get,
   getAll: getAll,
-  addInterests: addInterests,
   addUrls: addUrls,
-  removeInterests: removeInterests,
+  updateInterests: updateInterests,
   removeUrls: removeUrls
 }
