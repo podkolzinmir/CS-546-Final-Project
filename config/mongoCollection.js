@@ -16,4 +16,5 @@ module.exports = {
   users: getCollectionFn('users'),
   keywords: getCollectionFn('keywords'),
   articles: getCollectionFn('articles')
+
 };

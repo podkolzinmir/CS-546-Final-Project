@@ -140,23 +140,6 @@ async function updatePassword(id, newPass){
   }
 }
 
-// get user interests
-
-async function getUserInterests(userName){
-  if (id == null || typeof id != 'string'){
-    throw "id must be a string";
-  }
-    try{
-    const usersCollection = await users();
-    let usersList = await usersCollection.findOne({ email: username});
-    const userInterestList=usersList.interests;
-    return userInterestList;
-    
-}catch(e){
-  throw "failed to get the interests of the user";
-}
-}
-
 async function addUrls(id, newUrls){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
@@ -262,7 +245,6 @@ module.exports = {
   get: get,
   getAll: getAll,
   addUrls: addUrls,
-  getUserInterests: getUserInterests,
   updateInterests: updateInterests,
   updatePassword: updatePassword,
   removeUrls: removeUrls

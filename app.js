@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/signin', (req, res, next) => {
-   console.log('trying user:: '+JSON.stringify(req.body.username))
+
   if (req.session.user) {
     return res.redirect('/home');
   } else {
