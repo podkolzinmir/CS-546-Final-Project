@@ -72,7 +72,6 @@ ul li:hover a {
 
 #summary_btn, #read_btn{
   background-color: #0072ee;
-
 }
 
 body {
@@ -157,5 +156,4 @@ body {
 .checkbox-menu li.active label:hover,
 .checkbox-menu li.active label:focus {
     background-color: #b8b8ff;
-
 }
