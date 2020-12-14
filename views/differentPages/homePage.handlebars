@@ -38,6 +38,55 @@
             <li class="nav-item">
               <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
             </li>
+
+            <!-- check interests based blog post  -->
+        <li class="nav-item">
+          <div class="input-group">
+            <div class="input-group-btn">
+              {{!-- <button tabindex="-1" class="btn btn-default" type="button" style="color: white;">Your Interests</button> --}}
+              <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="submit" style="color: white;">Your Interests</button>
+              <span class="caret"></span>
+              </button>
+              <ul role="menu" class="dropdown-menu" id="conatiner">
+              {{!-- <script src="public/JS/interests.js"></script> --}}
+              {{#if interests}}
+                {{#each interests}}
+                <li class="divider"></li>
+                <li>
+                <input type="checkbox">
+                <span class="lbl"> {{this}}</span>
+              </li>
+                {{!-- <li>
+                <input type="checkbox"><span class="lbl">
+                Science</span>
+                </li>
+                <li>
+                <input type="checkbox"><span class="lbl">
+                Music</span>
+                </li>
+                <li>
+                <input type="checkbox"><span class="lbl">
+                Art</span>
+                </li> --}}
+              {{/each}}
+              {{/if}}
+              </ul>
+          </li>
+          </ul>
+            <!--Make sure the form has the autocomplete function switched off:-->
+              <form autocomplete="off" action="/action_page.php">
+                <div class="autocomplete" style="width:300px;">
+                 <input id="myInput" type="text" name="search" placeholder="Search Articles">
+                </div>
+                <input type="submit" value="Filter Articles">
+              </form>
+              <script src="public/JS/search.js"></script>
+            </div>
+          </form>
+        </nav>
+    </div>
+  </div>
+
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Enter Keyword" aria-label="Search">
@@ -46,6 +95,7 @@
         </div>
       </nav>
     </div>
+
     <div class="row">
       <div class="container-fluid">
         <div class="row">
@@ -100,7 +150,6 @@
                       speech.volume = 1;
                       speech.rate = 1;
                       speech.pitch = 0.5;
-
                       window.speechSynthesis.speak(speech);
                     }
                   </script>
@@ -118,7 +167,6 @@
                     }
                     </script> 
                   <script>
-
                       $(document).ready(function() {
                           $('input[type="checkbox"]').click(function() {
                               if($(this).prop("checked") == true) {
@@ -131,8 +179,7 @@
                                 
                             });
                         });
-
-                  </script>
+             </script>
 
 
                 </div>

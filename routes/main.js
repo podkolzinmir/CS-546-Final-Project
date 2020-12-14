@@ -101,8 +101,6 @@ router.post("/signup", async function (req, res) {
   }
 }
 
-
-
 });
 
 router.post("/signin", async function (req, res) {
@@ -193,6 +191,95 @@ router.get("/logout", async(req, res) => {
 });
 
 
+router.post("/signin", async function (req, res) {
+    // console.log(req.body,"Checking Body")
+    // let errors = [];
+    // let hasErrors = false;
+    const {
+      username,
+      password
+    } = req.body;
+    if (!validators.isValidEmail(username)){
+      res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Enter valid Email-ID!!"});
+      return;
+    }
+    if (!validators.isNonEmptyString(password)){
+      res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Enter valid Password!!"});
+      return;
+    }
+    let user = {
+      username: username,
+      password: password
+    };
+
+    try {
+      const checkuser = await userData.get(user.username);
+      // res.json(newUser);
+      // console.log(checkuser,"AA")
+      // console.log(user,"BB")
+      
+      if (!req.body.username || !req.body.password) {
+        res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Please enter Username and Password"});
+        return;
+    }
+    
+    else if (!checkuser) {
+        res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Incorrect Username!!"});
+        return;
+    }
+
+    // else if(checkuser.hashedPassword == undefined || req.body.username == undefined || req.body.password== undefined) {
+        // res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Please enter Username and Password or Incorrect Username!!"});
+        // return;
+    // }
+    
+    else {
+        const pwd = await bcrypt.compare(req.body.password, checkuser.password);
+        if (!pwd) {
+            res.status(401).render("differentPages/SignIn", {hasErrors: true, errors: "Error: Entered password does not match"});
+            return;
+        }
+        validCookies.push(req.sessionID);
+        req.session.user = checkuser;
+        res.redirect("/home");
+        return;
+        
+
+    }
+
+  } catch (e) {
+    res.status(400).json({ error: `User not found!! ${e}`  });;
+  }
+
+
+  //   if (errors.length > 0) {
+  //     return res.status(400).render("differentPages/SignIn", { errors, user });
+  //   } else {
+  //     try {
+  //     } catch (e) {
+  //       return res
+  //         .status(500)
+  //         .render("differentPages/SignIn", { errors: [e], user });
+  //     }
+  //   }
+  });
+
+
+router.get("/logout", async(req, res) => {
+    res.clearCookie("AuthCookie");
+    for (i = 0; i < validCookies.length; i++) {
+        if (validCookies[i] == req.sessionID) {
+            delete validCookies[i];
+        }
+    }
+    req.session.user = "";
+    req.session.destroy();
+    res.redirect("/login");
+    return;
+});
+
+
+
 // router.post("/addInterests", async(req, res) => {
 //   try {
 //     id = req.session.user._id;
@@ -213,7 +300,5 @@ router.get("/logout", async(req, res) => {
 //   }
 // });
 
+
 module.exports = router;
-
-
-

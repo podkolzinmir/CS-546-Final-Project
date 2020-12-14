@@ -1,4 +1,3 @@
-
 function inputinterests(){
 
    $(document).on('click','#savechanges',function(e){
