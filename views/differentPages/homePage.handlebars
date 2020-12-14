@@ -4,119 +4,198 @@
 <head>
   <link rel="stylesheet" href="/public/css/home.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var interestss = $('#int_length').text();
+      if (interestss < '1') {
+        $('#exampleModalCenter').modal("show");
+      }
+      // Hide the Modal
+      $("#modalSave").click(function () {
+        $("#exampleModalCenter").modal("hide");
+      });
+    });
+  </script>
 </head>
 
 <body id="body-home">
-  <nav class="navbar navbar-expand-lg navbar-light navbar-bgg">
-    <a class="navbar-brand" href="http://localhost:3000/" style="color: white;">LOGO</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
-        </li>
-        <li class="nav-item">
-          <div class="input-group">
-						<div class="input-group-btn">
-							{{!-- <button tabindex="-1" class="btn btn-default" type="button" style="color: white;">Your Interests</button> --}}
-							<button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="color: white;">Your Interests</button>
-							<span class="caret"></span>
-							</button>
-							<ul role="menu" class="dropdown-menu">
-								<li class="divider"></li>
-								<li>
-								<input type="checkbox">
-								<span class="lbl"> Tech</span>
-							</li>
-								<li>
-								<input type="checkbox"><span class="lbl">
-								Science</span>
-								</li>
-								<li>
-								<input type="checkbox"><span class="lbl">
-								Music</span>
-								</li>
-								<li>
-								<input type="checkbox"><span class="lbl">
-								Art</span>
-								</li>
-							</ul>
-        </li>
-      </ul>
-        <form autocomplete="off" action="/action_page.php">
-          <div class="autocomplete" style="width:300px;">
-          <input id="myInput" type="text" name="Search" placeholder="Search Articles">
-          </div>
-        {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter Articles</button> --}}
-        <input type="submit" value="Filter Articles">
-      </form>
-       <script src="public/JS/search.js"></script>
-    </div>
-</form>
-    </div>
-  </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3">
-        <div class="sidebar">
-          <header>Topics</header>
-          <ul>
-            <li><a href="#"> World</a></li>
-            <li><a href="#"> U.S.</a></li>
-            <li><a href="#"> Politics</a></li>
-            <li><a href="#"> Business</a></li>
-            <li><a href="#"> Technology</a></li>
-            <li><a href="#"> Science</a></li>
-            <li><a href="#"> Health</a></li>
-            <li><a href="#"> Sports</a></li>
-            <li><a href="#"> Books</a></li>
-            <li><a href="#"> Style</a></li>
-            <li><a href="/logout"> Logout</a></li>
+      <nav id="nav-bar-home" class="navbar navbar-expand-lg navbar-light fixed-top navbar-bgg">
+        <a class="navbar-brand" href="http://localhost:3000/" style="color: white;">LOGO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
+            </li>
+            <!-- check interests based blog post  -->
+        <li class="nav-item">
+          <div class="input-group">
+            <div class="input-group-btn">
+              {{!-- <button tabindex="-1" class="btn btn-default" type="button" style="color: white;">Your Interests</button> --}}
+              <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="submit" style="color: white;">Your Interests</button>
+              <span class="caret"></span>
+              </button>
+              <ul role="menu" class="dropdown-menu" id="conatiner">
+              {{!-- <script src="public/JS/interests.js"></script> --}}
+                <li class="divider"></li>
+                <li>
+                <input type="checkbox">
+                <span class="lbl"> Tech</span>
+              </li>
+                <li>
+                <input type="checkbox"><span class="lbl">
+                Science</span>
+                </li>
+                <li>
+                <input type="checkbox"><span class="lbl">
+                Music</span>
+                </li>
+                <li>
+                <input type="checkbox"><span class="lbl">
+                Art</span>
+                </li>
+              </ul>
+          </li>
           </ul>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card">
-          <h5 class="card-header">Featured Articles Based on Your Interests:</h5>
-         
-        </div>
-        
-        {{#if articles}}
+            <!--Make sure the form has the autocomplete function switched off:-->
+              <form autocomplete="off" action="/action_page.php">
+                <div class="autocomplete" style="width:300px;">
+                 <input id="myInput" type="text" name="search" placeholder="Search Articles">
+                </div>
+                <input type="submit" value="Filter Articles">
+              </form>
+              <script src="public/JS/search.js"></script>
+            </div>
+          </form>
+        </nav>
+    </div>
+  </div>
+    <div class="row">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-lg-3">
+            <div class="sidebar">
+              {{!-- <header>Topics</header> --}}
+              <ul>
+                <li><a href="/home"> Home</a></li>
+                <li><a href="/home/world"> World</a></li>
+                <li><a href="/home/us"> U.S.</a></li>
+                <li><a href="/home/sports"> Sports</a></li>
+                <li><a href="/home/business"> Business</a></li>
+                <li><a href="/home/technology"> Technology</a></li>
+                <li><a href="/home/science"> Science</a></li>
+                <li><a href="/home/health"> Health</a></li>
+                <li><a href="/home/entertainment"> Entertainment</a></li>
+                <li><a href="/logout"> Logout</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            
+            <div class="card" style="margin-top: 70px;">
+              
+              <label class="card-header" id="topic">Featured Articles Based on Your Interests:</label>
+
+            </div>
+
+            {{#if articles}}
             {{!-- <ul class="text-danger"> --}}
               {{#each articles}}
-                  <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                      <a href="{{this.link}}" target="_blank"><h5 class="card-title">{{this.title}}</h5></a>
-                      <p class="card-text">{{{this.content}}}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                    <div class="row" style="height: 5px;"></div>
-                  </div>
-                {{/each}}
+              <div class="card">
+                <label class="card-header" id="topic">Topic : {{this.keyword}}</label>
+                <div class="card-body">
+                  <a href="{{this.link}}" target="_blank"><label class="card-title"
+                      id="content">{{this.title}}</label></a>
+                  {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
+                  <br>
+                  <a href="#" class="btn btn-primary" id="summary_btn">Summary</a>
+                  <a href="#" class="btn btn-primary" id="read_btn"
+                    onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read
+                    Aloud</a>
+                  <script>
+                    function readOutLoud(message) {
+                      var speech = new SpeechSynthesisUtterance();
+                      var voices = window.speechSynthesis.getVoices();
+                      speech.default = false;
+                      speech.voice = voices.filter(function (voice) { return voice.name == 'Google US English Female'; })[0];
+                      // Set the text and voice attributes.
+                      speech.text = message;
+                      speech.volume = 1;
+                      speech.rate = 1;
+                      speech.pitch = 0.5;
+                      window.speechSynthesis.speak(speech);
+                    }
+                  </script>
+
+                  {{!-- <p class="card-text">{{{this.content}}}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+
+                  <!-- Add icon library -->
+                  <link rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
+                  <i onclick="myFunction(this)" id="heart" class="fa fa-heart"></i>
+                  <script>
+                    function myFunction(x) {
+                      x.classList.toggle("red");
+                    }     
+                  </script>
+
+                </div>
+                <div class="row" style="height: 5px;"></div>
+              </div>
+              {{/each}}
               {{/if}}
-        {{!-- <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-            <h5 class="card-title">TITLE IS HERE</h5>
-            <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+              {{!-- <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <div class="card-body">
+                  <h5 class="card-title">TITLE IS HERE</h5>
+                  <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div> --}}
           </div>
-        </div> --}}
-      </div>
-      <div class="col-lg-3">
-        <p> I am col-lg-3 right</p>
+          <div class="col-lg-3">
+            <p> I am col-lg-3 right</p>
+            <p id="int_length">{{interests_length}}</p>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <label class="modal-title" id="exampleModalLongTitle">Welcome! Please Tell Us Your Interests</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="">Please add your interests by going to User Profile</label><br>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Skip</button>
+                <button type="button" class="btn btn-primary" id="modalSave" onclick="
+                  location.href='http://localhost:3000/home/userprofile' ;">Go to User Profile</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
+
 
 </body>
 

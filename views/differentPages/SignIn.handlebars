@@ -1,28 +1,27 @@
-<div class="container row">
-    <div class="jumbotron col-sm-6 pull-center">
-        <form action="/signin" method="POST">
-         <div>
-             <label>Username</label>
-             <input type="text" placeholder="Enter Username" name="username"/>
-         </div>
-         <div>
-             <label>Password</label>
-             <input type="text" placeholder="Enter Password" name="password"/>
-         </div>
-         {{#if hasErrors}}
-                        <p class="text-danger">
-                            {{errors}}
-                        </p>
-                        {{/if}}
-         <div>
-             <input clas="btn btn-primary" type="submit" value="Login"/>
-         </div>
-         
-            <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw"> <a href="#">Forgot password?</a></span>
+<div class="container">
+    <div class="card" id="card">
+        <header class="card-header" style="background-color: #272635;">
+            <h1 class="card-title mt-2 text-center" style="color: white;">Welcome! Please LogIn</h1>
+        </header>
+        <div class="class-body">
+            <form action="/signin" method="POST">
+                <div class="form-group text-center">
+                    <label style="padding-top: 15px; font-size: 20px;" for="email">Enter Email</label><br>
+                    <input class="input-login" type="text" placeholder="Email" name="username" id="email"/>
+                </div>
+                <div class="form-group text-center">
+                    <label style="font-size: 20px;" for="password">Password</label><br>
+                    <input class="input-login" type="text" placeholder="Password" name="password"  id="password"/>
+                </div>
+                {{#if hasErrors}}
+                <p class="text-danger">
+                    {{errors}}
+                </p>
+                {{/if}}
+                <div class="form-group text-center">
+                    <input id="b9" type="submit" value="Login" />
+                </div>
+            </form>
         </div>
-         
-        </form>
     </div>
 </div>

@@ -1,6 +1,6 @@
 {
-  "mongoConfig": {
-    "serverUrl": "mongodb://localhost:27017",
-    "database": "CS_546_Project"
+    "mongoConfig": {
+      "serverUrl": "mongodb+srv://jdyer:546@cluster0.drwr7.mongodb.net/CS_546_project?retryWrites=true&w=majority",
+      "database": "CS_546_project"
+    }
   }
-}

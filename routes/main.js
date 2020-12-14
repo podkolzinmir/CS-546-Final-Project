@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 var bcrypt = require('bcryptjs');
+const { addInterests } = require("../data/users");
 const validators = data.validators;
 const userData = data.users;
 let validCookies =[];
@@ -14,7 +15,13 @@ router.get("/", async function (req, res) {
 });
 
 router.get("/signup", async function (req, res) {
-  res.render("differentPages/Signup");
+  if (!validCookies.includes(req.sessionID)) {
+    res.render("differentPages/SignUp");
+    return;
+
+} else {
+    res.redirect("/home");
+}
 });
 
 router.get("/login", async function (req, res) {
@@ -59,6 +66,14 @@ router.post("/signup", async function (req, res) {
   if (password !== passwordConfirm)
     errors.push("Password and confirmation don't match");
   const hashedPassword = await bcrypt.hash(password, 10);
+
+  // const checkuser = await userData.get(email.toLowerCase);
+
+  // if(checkuser){
+  //   res.status(401).render("differentPages/SignUp", {hasErrors: true, errors: "Email-ID already exists!!"});
+  //   return;
+  // }
+
 
   let user = {
     firstName: firstName,
@@ -176,5 +191,26 @@ router.get("/logout", async(req, res) => {
     res.redirect("/login");
     return;
 });
+
+
+// router.post("/addInterests", async(req, res) => {
+//   try {
+//     id = req.session.user._id;
+//     interests = [];
+//     if(req.body.interests1){
+//       interests.push(req.body.interests1);
+//     }
+//     if(req.body.interests2){
+//       interests.push(req.body.interests2);
+//     }
+//     if(req.body.interests3){
+//       interests.push(req.body.interests3);
+//     }
+//     await addInterests(id,interests);
+//     res.redirect("/userprofile");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 module.exports = router;

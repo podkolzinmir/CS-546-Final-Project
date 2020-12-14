@@ -78,51 +78,14 @@
                     </form>
                 </article> <!-- card-body end .// -->
                 <div class="border-top card-body text-center">Already registered? <a href="/login"
-                        class=" register-login-link">Log In</a>
+                        class=" register-login-link" id="loginlink">Log In</a>
                 </div>
             </div> <!-- card.// -->
         </div> <!-- col.//-->
 
     </div> <!-- row.//-->
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" hidden>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
-<<<<<<< HEAD
-<!--container end.//-->
-<script>
-function pass() {
-    let myForm = document.getElementById("register");
-    var pass_1 = document.forms["myForm"].password.value.length;
-    var pass_2 = document.forms["myForm"].passwordConfirm.value.length;
-    if (pass_1 != pass_2) {
-        alert("the pass and Confirm pass must be equal");
-        return false;
-    }
-    return true;
-}
-</script>
-=======
 <script>
     let myForm = document.getElementById("register");
     let modal_div = document.getElementById("exampleModalCenter");
@@ -133,4 +96,3 @@ function pass() {
     }
 </script>
 <!--container end.//-->
->>>>>>> ed81d509efd99df44e096651df34260ddd8e4b70
