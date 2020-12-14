@@ -47,6 +47,14 @@ async function create(url, keywordsList,title, date){
   }
   const keywordsCollection = await keywordsData.getAll();
   const articlesCollection = await articles();
+  
+  // for(i=0;i<articlesCollection.length;i++){
+  //   if(articlesCollection[i].article_URL == url){
+  //     throw "article url arleady in database";
+  //   }
+  // }
+
+  
   let newArticle = {
     article_URL: url,
     keywords: keywordsList,
@@ -86,7 +94,8 @@ async function getByUrl(url) {
       const articlesCollection = await articles();
       const article = await articlesCollection.findOne({ article_URL: url });
       if (article == null){
-        throw "article not found";
+        return null;
+        // throw "article not found";
       }
       return article;
   }catch(e){
