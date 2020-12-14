@@ -246,5 +246,6 @@ module.exports = {
   getAll: getAll,
   addUrls: addUrls,
   updateInterests: updateInterests,
+  updatePassword: updatePassword,
   removeUrls: removeUrls
 }
