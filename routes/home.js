@@ -108,7 +108,7 @@ router.get("/", async function (req, res) {
         await articlesdb.create(i.link,[i.keyword], i.title,i.pubDate);
       }
     }
-    res.render("differentPages/homePage",{articles: articles, interests_length: interests.length});
+    res.render("differentPages/homePage",{articles: articles, interests_length: interests.length, interests:interests});
   });
 
 router.get("/userprofile", async function(req, res){
