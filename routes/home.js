@@ -4,6 +4,7 @@ const news = require('gnews');
 const data = require("../data");
 const keywordb = data.keywords;
 const articlesdb = require("../data/articles");
+const usersdb = require("../data/users");
 
 var AYLIENTextAPI = require('aylien_textapi');
     var textapi = new AYLIENTextAPI({
@@ -107,7 +108,7 @@ router.get("/", async function (req, res) {
         await articlesdb.create(i.link,[i.keyword], i.title,i.pubDate);
       }
     }
-    res.render("differentPages/homePage",{articles: articles, interests_length: interests.length});
+    res.render("differentPages/homePage",{articles: articles, interests_length: interests.length, interests:interests});
   });
 
 router.get("/userprofile", async function(req, res){
@@ -160,6 +161,13 @@ router.get("/us",async function(req,res){
   res.render("differentPages/homePage",{articles: usfeed, interests_length: interests.length})
 });
 
+router.post("/updateint",async function(req,res){
+  console.log(Object.keys(req.body)[0].split(','));
+  let newintarray = Object.keys(req.body)[0].split(',');
+  let updateduser = await usersdb.updateInterests(req.session.user._id, newintarray);
+  console.log(updateduser);
+  res.render("differentPages/EditProfile",{user:updateduser});
+})
 
 
-module.exports = router;
+module.exports = router

@@ -48,12 +48,14 @@
               </button>
               <ul role="menu" class="dropdown-menu" id="conatiner">
               {{!-- <script src="public/JS/interests.js"></script> --}}
+              {{#if interests}}
+                {{#each interests}}
                 <li class="divider"></li>
                 <li>
                 <input type="checkbox">
-                <span class="lbl"> Tech</span>
+                <span class="lbl"> {{this}}</span>
               </li>
-                <li>
+                {{!-- <li>
                 <input type="checkbox"><span class="lbl">
                 Science</span>
                 </li>
@@ -64,7 +66,9 @@
                 <li>
                 <input type="checkbox"><span class="lbl">
                 Art</span>
-                </li>
+                </li> --}}
+              {{/each}}
+              {{/if}}
               </ul>
           </li>
           </ul>
@@ -145,12 +149,27 @@
                   <!-- Add icon library -->
                   <link rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-                  <i onclick="myFunction(this)" id="heart" class="fa fa-heart"></i>
+                  <input type="checkbox" onclick="myFunction(this)" id="heart" class="fa fa-heart"/>
                   <script>
                     function myFunction(x) {
                       x.classList.toggle("red");
-                    }     
+                    }
+                    </script> 
+                  <script>
+                      $(document).ready(function() {
+                          $('input[type="checkbox"]').click(function() {
+                              if($(this).prop("checked") == true) {
+                                console.log("Checkbox is checked.");
+                              }
+                              else if($(this).prop("checked") == false) {
+                                console.log("Checkbox is unchecked.");
+                              }
+                             
+                                
+                            });
+                        });
                   </script>
+
 
                 </div>
                 <div class="row" style="height: 5px;"></div>
@@ -166,7 +185,7 @@
                 </div>
               </div> --}}
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3" style="margin-top: 70px;">
             <p> I am col-lg-3 right</p>
             <p id="int_length">{{interests_length}}</p>
           </div>

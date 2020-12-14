@@ -97,7 +97,7 @@ function autocomplete(inp, arr) {
 
 /*An array containing all the keywords:*/
 
-let article=['World','U.S','Technology','Science','Sports','Health','Style','Politics','Business','Books']
+let article=['World','U.S','Technology','Science','Sports','Health','Style','Politics','Business','Books','Entertainment'];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), article);
