@@ -193,25 +193,25 @@ router.get("/logout", async(req, res) => {
 });
 
 
-router.post("/addInterests", async(req, res) => {
-  try {
-    id = req.session.user._id;
-    interests = [];
-    if(req.body.interests1){
-      interests.push(req.body.interests1);
-    }
-    if(req.body.interests2){
-      interests.push(req.body.interests2);
-    }
-    if(req.body.interests3){
-      interests.push(req.body.interests3);
-    }
-    await addInterests(id,interests);
-    res.redirect("/home");
-  } catch (error) {
-    console.log(error);
-  }
-});
+// router.post("/addInterests", async(req, res) => {
+//   try {
+//     id = req.session.user._id;
+//     interests = [];
+//     if(req.body.interests1){
+//       interests.push(req.body.interests1);
+//     }
+//     if(req.body.interests2){
+//       interests.push(req.body.interests2);
+//     }
+//     if(req.body.interests3){
+//       interests.push(req.body.interests3);
+//     }
+//     await addInterests(id,interests);
+//     res.redirect("/userprofile");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 module.exports = router;
 
