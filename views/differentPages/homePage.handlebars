@@ -111,12 +111,29 @@
                   <!-- Add icon library -->
                   <link rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-                  <i onclick="myFunction(this)" id="heart" class="fa fa-heart"></i>
+                  <input type="checkbox" onclick="myFunction(this)" id="heart" class="fa fa-heart"/>
                   <script>
                     function myFunction(x) {
                       x.classList.toggle("red");
-                    }     
+                    }
+                    </script> 
+                  <script>
+
+                      $(document).ready(function() {
+                          $('input[type="checkbox"]').click(function() {
+                              if($(this).prop("checked") == true) {
+                                console.log("Checkbox is checked.");
+                              }
+                              else if($(this).prop("checked") == false) {
+                                console.log("Checkbox is unchecked.");
+                              }
+                             
+                                
+                            });
+                        });
+
                   </script>
+
 
                 </div>
                 <div class="row" style="height: 5px;"></div>
@@ -132,7 +149,7 @@
                 </div>
               </div> --}}
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3" style="margin-top: 70px;">
             <p> I am col-lg-3 right</p>
             <p id="int_length">{{interests_length}}</p>
           </div>
