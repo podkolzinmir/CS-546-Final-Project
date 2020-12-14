@@ -119,6 +119,27 @@ async function updateInterests(id, newInterests){
   }
 }
 
+async function updatePassword(id, newPass){
+  if (id == null || typeof id != 'string' || newPass == null || typeof newPass != 'string'){
+    throw "id and newPass must be strings";
+  }
+  try{
+    const objId = new ObjectId(id);
+    const usersCollection = await users();
+    const user = await usersCollection.findOne({ _id: objId });
+    if (user == null){
+      throw "user not found";
+    }
+    let updatedUser = {
+      password: newPass
+    }
+    const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
+    return getById(id);
+  }catch(e){
+    throw "failed to update password";
+  }
+}
+
 async function addUrls(id, newUrls){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
