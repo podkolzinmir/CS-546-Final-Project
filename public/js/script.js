@@ -18,3 +18,21 @@ function inputinterests(){
    })
 
 }
+
+function searchkeyword(){
+
+    $(document).on('click','#keywordsearch',function(e){
+        e.preventDefault();
+        let inputkeyword = document.getElementById('myInput').value;
+        
+        $.ajax({
+            type:'POST',
+            url :'/home/keywordsearch',
+            data : inputkeyword,
+            success:function(){
+                location.reload(true);
+            }
+        })
+    })
+ 
+ }
