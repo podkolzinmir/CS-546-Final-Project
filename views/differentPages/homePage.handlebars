@@ -89,28 +89,6 @@
       </nav>
     </div>
   </div>
-<<<<<<< HEAD
-    <div class="row">
-      <div class="container-fluid">
-        <div class="row">
-
-          <div class="col-lg-3">
-            <div class="sidebar">
-              {{!-- <header>Topics</header> --}}
-              <ul>
-                <li><a href="/home"> Home</a></li>
-                {{!-- <li><a href="/home/world"> World</a></li> --}}
-                <li><a href="/home/us"> U.S.</a></li>
-                <li><a href="/home/sports"> Sports</a></li>
-                <li><a href="/home/business"> Business</a></li>
-                <li><a href="/home/technology"> Technology</a></li>
-                <li><a href="/home/science"> Science</a></li>
-                <li><a href="/home/health"> Health</a></li>
-                <li><a href="/home/entertainment"> Entertainment</a></li>
-                <li><a href="/logout"> Logout</a></li>
-              </ul>
-            </div>
-=======
   <div class="row">
     <div class="container-fluid">
       <div class="row">
@@ -130,73 +108,14 @@
               <li><a href="/home/entertainment"> Entertainment</a></li>
               <li><a href="/logout"> Logout</a></li>
             </ul>
->>>>>>> 35a057bd69c8b57618f3e698d45737fc3232b3ee
           </div>
         </div>
         <div class="col-lg-6">
 
           <div class="card" style="margin-top: 70px;">
-<<<<<<< HEAD
-
-            <label class="card-header" id="topic">Featured Articles Based on Your Interests:</label>
-          </div>
-            {{#if articles}}
-            {{!-- <ul class="text-danger"> --}}
-              {{#each articles}}
-              <div class="card">
-                <label class="card-header" id="topic">Topic : {{this.keyword}}</label>
-                <div class="card-body">
-                  <a href="{{this.link}}" target="_blank"><label class="card-title"
-                      id="content">{{this.title}}</label></a>
-                  <br>
-                  <p>Publication Date: {{this.pubDate}}</p>
-                  {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
-                  <br>
-                  {{!-- <a href="#" class="btn btn-primary" id="summary_btn">Summary</a> --}}
-                  <a href="#" class="btn btn-primary" id="read_btn"
-                    onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read
-                    Aloud</a>
-                  <script>
-                    function readOutLoud(message) {
-                      var speech = new SpeechSynthesisUtterance();
-                      var voices = window.speechSynthesis.getVoices();
-                      speech.default = false;
-                      speech.voice = voices.filter(function (voice) { return voice.name == 'Google US English Female'; })[0];
-                      // Set the text and voice attributes.
-                      speech.text = message;
-                      speech.volume = 1;
-                      speech.rate = 1;
-                      speech.pitch = 0.5;
-                      window.speechSynthesis.speak(speech);
-                    }
-                  </script>
-
-                  {{!-- <p class="card-text">{{{this.content}}}</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-
-                  <!-- Add icon library -->
-                  <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-                  <input type="checkbox" onclick="likebtn(this)" id="heart" class="fa fa-heart"/>
-
-                </div>
-                <div class="row" style="height: 5px;"></div>
-              </div>
-              {{/each}}
-              {{/if}}
-              {{!-- <div class="card">
-                <h5 class="card-header">Featured</h5>
-                <div class="card-body">
-                  <h5 class="card-title">TITLE IS HERE</h5>
-                  <p class="card-text">MAYBE URL IS HERE BECOZ URL IS LONG.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div> --}}
-=======
 
             <label class="card-header" id="topic">Featured Articles Based on Your Interests:</label>
 
->>>>>>> 35a057bd69c8b57618f3e698d45737fc3232b3ee
           </div>
 
           {{#if articles}}
