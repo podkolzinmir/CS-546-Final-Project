@@ -175,7 +175,8 @@ async function addUrls(id, newUrls){
        }
      }
      if(urlFound==false){
-       updatedUrls.push(newUrls[i]);
+        updatedUrls.push(newUrls[i]);
+        alert('successfully added to your likes');
      }
    }
    let updatedUser = {

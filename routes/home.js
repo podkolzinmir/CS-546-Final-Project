@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const news = require('gnews');
+const { addUrls } = require("../data/users");
+
 
 var AYLIENTextAPI = require('aylien_textapi');
     var textapi = new AYLIENTextAPI({
@@ -19,6 +21,11 @@ const getarticles = async (keyword) => {
   // }
 };
 
+router.post("/", async function (req, res){
+  console.log("made it here")
+  res.json({"key":"value"});
+})
+
 router.get("/", async function (req, res) {
     // console.log(req.session.user,"I'm inside home route!!")
     let interests = req.session.user.interests;
@@ -32,8 +39,6 @@ router.get("/", async function (req, res) {
       const ArticleData = await getarticles(interests[item]);
       ArticleData.forEach(v => {v.keyword = interests[item];});
       ArticleData.forEach(elements => articles.push(elements) );
-      
-    
     }
     res.render("differentPages/homePage",{articles: articles, interests_length: interests.length});
   });

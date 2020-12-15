@@ -107,9 +107,25 @@
                           <i onclick="myFunction(this)" id="heart" class="fa fa-heart"></i>
                             <script>
                               function myFunction(x) {
-                              x.classList.toggle("red"); }     
+                              x.classList.toggle("red"); 
+                              }  
                             </script>
-                        
+
+
+                        <script>
+                          $('#heart').on('click', function(e){
+                            console.log("made it here 1");
+                            $.ajax({
+                              url: '/home',
+                              method: 'POST',
+                              data: {thislink: this.link}
+                            }).then(function(){
+                            console.log("successfully added to likes")
+                            });
+                          }); 
+                        </script>
+
+
                     </div>
                     <div class="row" style="height: 5px;"></div>
                   </div>
