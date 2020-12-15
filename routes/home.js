@@ -68,11 +68,11 @@ const healthfunc = async() => {
   return health;
 }
 
-const worldfunc = async() => {
-  world = await news.topic('WORLD',{n:10});
-  world.forEach(v => {v.keyword = "World";});
-  return world;
-}
+// const worldfunc = async() => {
+//   world = await news.topic('WORLD',{n:10});
+//   world.forEach(v => {v.keyword = "World";});
+//   return world;
+// }
 
 
 let interests = [];
@@ -149,10 +149,10 @@ router.get("/entertainment",async function(req,res){
   res.render("differentPages/homePage",{articles: entertainmentfeed, interests_length: interests.length})
 });
 
-router.get("/world",async function(req,res){
-  const worldfeed = await worldfunc();
-  res.render("differentPages/homePage",{articles: worldfeed, interests_length: interests.length})
-});
+// router.get("/world",async function(req,res){
+//   const worldfeed = await worldfunc();
+//   res.render("differentPages/homePage",{articles: worldfeed, interests_length: interests.length})
+// });
 
 
 router.get("/us",async function(req,res){
@@ -174,8 +174,18 @@ router.post("/updateint",async function(req,res){
 router.post("/keywordsearch",async function(req,res){
   console.log(Object.keys(req.body)[0]);
   let searchkeyword = Object.keys(req.body)[0];
+try{
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
   console.log(keyworddata)
+  // if(!keyworddata){
+  //   alert('Please enter a Valid Keyword, Keyword not found!!');
+  // }
+}
+catch(e){
+  res.send(500,'showAlert');
+}
+
+  
   // res.render("differentPages/EditProfile",{user:updateduser});
 })
 

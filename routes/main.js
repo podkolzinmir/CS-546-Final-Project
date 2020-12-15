@@ -84,6 +84,8 @@ router.post("/signup", async function (req, res) {
     sec_question: sec_question,
     sec_answer: sec_answer
   };
+
+
   try {
     const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
     return res.redirect("/login");
