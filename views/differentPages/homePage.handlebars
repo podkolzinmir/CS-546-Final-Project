@@ -75,9 +75,9 @@
             <!--Make sure the form has the autocomplete function switched off:-->
               <form autocomplete="off" action="/action_page.php">
                 <div class="autocomplete" style="width:300px;">
-                 <input id="myInput" type="text" name="search" placeholder="Search Articles">
+                 <input id="myInput" type="text" name="search" placeholder="Search by Keyword">
                 </div>
-                <input type="submit" value="Filter Articles">
+                <input type="submit" value="Search" id="keywordsearch" onclick="searchkeyword()">
               </form>
               <script src="public/JS/search.js"></script>
             </div>
@@ -122,9 +122,11 @@
                 <div class="card-body">
                   <a href="{{this.link}}" target="_blank"><label class="card-title"
                       id="content">{{this.title}}</label></a>
+                  <br>
+                  <p>Publication Date: {{this.pubDate}}</p>
                   {{!-- <p class="card-text">{{{this.content.contentScippet}}}</p> --}}
                   <br>
-                  <a href="#" class="btn btn-primary" id="summary_btn">Summary</a>
+                  {{!-- <a href="#" class="btn btn-primary" id="summary_btn">Summary</a> --}}
                   <a href="#" class="btn btn-primary" id="read_btn"
                     onclick="readOutLoud(`The title of this article is {{this.title}}, click the link to be redirected to the article.`)">Read
                     Aloud</a>

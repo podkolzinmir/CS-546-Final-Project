@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const news = require('gnews');
 const data = require("../data");
-const keywordb = data.keywords;
+const keyworddb =require("../data/keywords");
 const articlesdb = require("../data/articles");
 const usersdb = require("../data/users");
 
@@ -166,8 +166,19 @@ router.post("/updateint",async function(req,res){
   let newintarray = Object.keys(req.body)[0].split(',');
   let updateduser = await usersdb.updateInterests(req.session.user._id, newintarray);
   console.log(updateduser);
+  req.session.user.interests = updateduser.interests;
   res.render("differentPages/EditProfile",{user:updateduser});
 })
+
+
+router.post("/keywordsearch",async function(req,res){
+  console.log(Object.keys(req.body)[0]);
+  let searchkeyword = Object.keys(req.body)[0];
+  let keyworddata = await keyworddb.getByKeyword(searchkeyword);
+  console.log(keyworddata)
+  // res.render("differentPages/EditProfile",{user:updateduser});
+})
+
 
 
 module.exports = router
