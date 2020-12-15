@@ -22,8 +22,15 @@ const getarticles = async (keyword) => {
 };
 
 router.post("/", async function (req, res){
-  console.log("made it here")
-  res.json({"key":"value"});
+  var likedUrl = [res.json({link:linkValue})];
+  
+  try {
+    id = req.session.user._id;
+    await addUrls(id, likedUrl);
+    console.log("made it here")
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 router.get("/", async function (req, res) {

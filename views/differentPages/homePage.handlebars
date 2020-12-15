@@ -71,7 +71,6 @@
           <div class="col-lg-6">
             <div class="card">
               <h5 class="card-header">Featured Articles Based on Your Interests:</h5>
-
             </div>
 
             {{#if articles}}
@@ -114,7 +113,6 @@
 
                         <script>
                           $('#heart').on('click', function(e){
-                            console.log("made it here 1");
                             $.ajax({
                               url: '/home',
                               method: 'POST',
