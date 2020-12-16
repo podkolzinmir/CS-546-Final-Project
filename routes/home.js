@@ -179,6 +179,9 @@ router.post("/keywordsearch",async function(req,res){
   // res.render("differentPages/EditProfile",{user:updateduser});
 })
 
+router.post("/likeButton", async function(req, res){
+  console.log('req.body');
+});
 
 
 module.exports = router
