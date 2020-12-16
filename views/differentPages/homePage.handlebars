@@ -113,14 +113,19 @@
 
                         <script>
                           $('#heart').on('click', function(e){
+                            console.log($('#content');
                             $.ajax({
                               url: '/home',
                               method: 'POST',
-                              data: {thislink: this.link}
+                              data: JSON.stringify({thistitle: this.title}),
+                              contentType: "application/json;charset=utf-8",
+                              dataType: 'json',
                             }).then(function(){
                             console.log("successfully added to likes")
                             });
                           }); 
+
+
                         </script>
 
 
