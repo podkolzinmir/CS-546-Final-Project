@@ -100,7 +100,7 @@ router.get("/", async function (req, res) {
       ArticleData.forEach(v => {v.keyword = interests[item];});
       ArticleData.forEach(elements => articles.push(elements) );
     }
-    console.log(articles)
+    //console.log(articles)
     for (const i of articles)
     {
       let checkarticle = await articlesdb.getByUrl(i.link);

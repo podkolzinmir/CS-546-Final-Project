@@ -77,7 +77,7 @@
             </li>
           </ul>
           <!--Make sure the form has the autocomplete function switched off:-->
-          <form autocomplete="off" action="/action_page.php">
+          <form autocomplete="off" action="/keywordsearch">
             <div class="autocomplete" style="width:300px;">
               <input id="myInput" type="text" name="search" placeholder="Search by Keyword">
             </div>
@@ -122,7 +122,7 @@
           {{!-- <ul class="text-danger"> --}}
             {{#each articles}}
             <div class="card" id={{this.keyword}}>
-              <label class="card-header" id="">Topic : {{this.keyword}}</label>
+              <label class="card-header">Topic : {{this.keyword}}</label>
               <div class="card-body">
                 <a href="{{this.link}}" target="_blank"><label class="card-title"
                     id="content">{{this.title}}</label></a>
