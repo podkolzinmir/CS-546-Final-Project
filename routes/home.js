@@ -12,7 +12,7 @@ var AYLIENTextAPI = require('aylien_textapi');
     application_key: "YOUR_APP_KEY"
     });
 
-let num = 0
+let num = 10;
 let sidearticles = [];
 let newsheadline=[];
 let business=[];
@@ -174,16 +174,28 @@ router.post("/updateint",async function(req,res){
 router.post("/keywordsearch",async function(req,res){
   console.log(Object.keys(req.body)[0]);
   let searchkeyword = Object.keys(req.body)[0];
-try{
+  let listofarticles = [];
+
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
-  console.log(keyworddata)
-  // if(!keyworddata){
-  //   alert('Please enter a Valid Keyword, Keyword not found!!');
-  // }
-}
-catch(e){
-  res.send(500,'showAlert');
-}
+  
+  
+  if(!keyworddata || keyworddata == null){
+    let articlelist = await getarticles(searchkeyword);
+    articlelist.forEach(v => {v.keyword = searchkeyword;});
+    res.render("differentPages/homePage",{articles: articlelist, interests_length: interests.length});
+  }
+
+  else{
+    
+    for (let i of keyworddata.URLs){
+      let articlebyurl = await articlesdb.getByUrl(i)
+      listofarticles.push(articlebyurl);
+    }
+    res.render("differentPages/homePage",{articles: listofarticles.slice(1,10), interests_length: interests.length});
+
+  }
+
+
 
   
   // res.render("differentPages/EditProfile",{user:updateduser});

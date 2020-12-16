@@ -59,7 +59,8 @@ async function getByKeyword(keyword) {
       const keywordsCollection = await keywords();
       const keywordFound = await keywordsCollection.findOne({ keyword: keyword });
       if (keywordFound == null){
-        throw "keyword not found";
+        return null;
+        // throw "keyword not found";
       }
       return keywordFound;
   }catch(e){

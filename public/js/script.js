@@ -30,7 +30,7 @@ function searchkeyword(){
             url :'/home/keywordsearch',
             data : inputkeyword,
             success:function(){
-                location.reload(true);
+                
             },
             error: function(error){
                 if(error.responseText == 'showAlert'){
@@ -48,7 +48,7 @@ function searchkeyword(){
     x.classList.toggle("red");
 
     $(document).ready(function() {
-        $('#heart').on('click',function(e) {
+        $('#heart').off('clcik').on('click',function(e) {
             if($(this).prop("checked") == true) {
               console.log("Checkbox is checked.");
               
