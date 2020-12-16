@@ -10,7 +10,16 @@
 #register-btn {
   border: black 1px solid;
 }
+#reset-btn {
+  border: black 1px solid;
+}
 #register-btn:hover {
+  background: linear-gradient(to left, black 50%, white 50%) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
+  color: white;
+}
+#reset-btn:hover {
   background: linear-gradient(to left, black 50%, white 50%) right;
   background-size: 200%;
   transition: 0.5s ease-out;
