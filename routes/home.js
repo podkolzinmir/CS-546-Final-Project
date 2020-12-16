@@ -177,6 +177,23 @@ router.post("/keywordsearch",async function(req,res){
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
   console.log(keyworddata)
   // res.render("differentPages/EditProfile",{user:updateduser});
+
+
+router.post("/likeButton", async function (req, res){
+    console.log("made it here")
+    //res.body({"key":"link"});
+    console.log(req.body);
+   // var likedUrl = [res.json({link:linkValue})];
+  
+  /*  try {
+      id = req.session.user._id;
+      await addUrls(id, likedUrl);
+      console.log("made it here")
+    } catch (error) {
+      console.log(error);
+    }*/
+  })
+
 })
 
 

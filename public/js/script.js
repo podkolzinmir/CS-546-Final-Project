@@ -1,3 +1,5 @@
+
+
 function inputinterests(){
 
    $(document).on('click','#savechanges',function(e){
@@ -72,4 +74,16 @@ $(document).on('click', '#conatiner li input', function(){
 $(document).off('click').on('click','div.card div.card-body input', function(){
     heart_btn = $(this).attr('id');
     console.log(heart_btn);
+
+    $.ajax({
+        type: 'POST',
+        url: '/home/likeButton',
+        data: {link: heart_btn},
+      success:function(){
+      console.log("successfully added to likes");
+      }
+    })
+
+
 });
+
