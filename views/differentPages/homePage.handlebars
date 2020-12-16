@@ -113,7 +113,9 @@
 
                         <script>
                           $('#heart').on('click', function(e){
-                            console.log($('#content');
+                            e.preventDefault();
+                            console.log($('#content.card-title'));
+                          // console.log($(this.title));
                             $.ajax({
                               url: '/home',
                               method: 'POST',
