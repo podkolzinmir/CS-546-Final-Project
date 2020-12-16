@@ -63,3 +63,13 @@ $(document).on('click', '#conatiner li input', function(){
             }
         }
 });
+
+// $('#heart').off('click').on('click', function(){
+//     var divid = $("div > a").attr('href');
+//     console.log(divid);
+// });
+
+$(document).off('click').on('click','div.card div.card-body input', function(){
+    heart_btn = $(this).attr('id');
+    console.log(heart_btn);
+});
