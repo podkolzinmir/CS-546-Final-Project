@@ -124,5 +124,6 @@ module.exports = {
   create: create,
   get: get,
   getAll: getAll,
-  addUrls: addUrls
+  addUrls: addUrls,
+  getByKeyword:getByKeyword
 }

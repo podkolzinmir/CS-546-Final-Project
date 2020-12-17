@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const news = require('gnews');
 const data = require("../data");
-const keywordb = data.keywords;
-const articlesdb = require("../data/articles");
+const keyworddb =require("../data/keywords");
+const articlesdb = require("../data/articles")
+const { addUrls } = require("../data/users");;
 const usersdb = require("../data/users");
 
 var AYLIENTextAPI = require('aylien_textapi');
@@ -100,7 +101,7 @@ router.get("/", async function (req, res) {
       ArticleData.forEach(v => {v.keyword = interests[item];});
       ArticleData.forEach(elements => articles.push(elements) );
     }
-    console.log(articles)
+    //console.log(articles)
     for (const i of articles)
     {
       let checkarticle = await articlesdb.getByUrl(i.link);
@@ -166,8 +167,34 @@ router.post("/updateint",async function(req,res){
   let newintarray = Object.keys(req.body)[0].split(',');
   let updateduser = await usersdb.updateInterests(req.session.user._id, newintarray);
   console.log(updateduser);
+  req.session.user.interests = updateduser.interests;
   res.render("differentPages/EditProfile",{user:updateduser});
 })
 
 
+router.post("/keywordsearch",async function(req,res){
+  console.log(Object.keys(req.body)[0]);
+  let searchkeyword = Object.keys(req.body)[0];
+  let keyworddata = await keyworddb.getByKeyword(searchkeyword);
+  console.log(keyworddata)
+  // res.render("differentPages/EditProfile",{user:updateduser});
+
+
+
+})
+
+router.post("/likeButton", async function(req, res){
+  console.log(req.body.link);
+
+  try {
+    id = req.session.user._id;
+    await addUrls(id, req.body.link);
+    console.log("made it here")
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 module.exports = router
+
