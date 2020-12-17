@@ -98,11 +98,12 @@ $(document).on('click', '#conatiner li input', function(){
 
 function likeBttn(x){
         heart_btn = $(x).attr('id');
-        console.log(heart_btn);
+        check = x.checked;
+        console.log(heart_btn, check);
         $.ajax({
             type: 'POST',
             url: '/home/likeButton',
-            data: {link: heart_btn},
+            data: {link: heart_btn, check:check},
           success:function(){
           console.log("successfully added to likes");
           }

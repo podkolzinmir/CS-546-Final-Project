@@ -4,7 +4,7 @@ const news = require('gnews');
 const data = require("../data");
 const keyworddb =require("../data/keywords");
 const articlesdb = require("../data/articles")
-const { addUrls } = require("../data/users");;
+const { addUrls, removeUrls } = require("../data/users");;
 const usersdb = require("../data/users");
 
 var AYLIENTextAPI = require('aylien_textapi');
@@ -207,7 +207,15 @@ router.post("/likeButton", async function(req, res){
   console.log(req.body)
   try {
     id = req.session.user._id;
-    await addUrls(id, req.body.link);
+    if(req.body.check=='true')
+    {
+      await addUrls(id, req.body.link);
+    }
+    if(req.body.check=='false')
+    {
+      await removeUrls(id, req.body.link);
+    }
+    
   } catch (error) {
     console.log(error);
   }
