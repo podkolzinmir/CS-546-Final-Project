@@ -1,7 +1,8 @@
 const dbConnection = require('../config/mongoConnection');
 const mongoCollections = require("./../config/mongoCollection")
-const users = mongoCollections.users;
-const usersData = require('./users');
+const data = require('../data/');
+const usersData = data.users;
+//const usersData = require('./users');
 ​
 //creating data for the database
 ​
