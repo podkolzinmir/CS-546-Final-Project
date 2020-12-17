@@ -171,10 +171,6 @@ router.post("/updateint",async function(req,res){
   res.render("differentPages/EditProfile",{user:updateduser});
 })
 
-router.post("/likeButton", async function(req,res){
-  console.log(req.body);
-})
-
 router.post("/keywordsearch",async function(req,res){
   console.log(req.body.search);
   let searchkeyword = req.body.search;
