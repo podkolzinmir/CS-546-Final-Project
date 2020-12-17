@@ -1,9 +1,4 @@
-<style>
-    body {
-        margin-top: 20px;
-        background: #f8f8f8
-    }
-</style>
+<link rel="stylesheet" href="/public/css/edituser.css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row flex-lg-nowrap">
@@ -28,7 +23,8 @@
                                     </div>
                                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                         <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.name.firstname}} {{user.name.lastname}}</h4>
+                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.name.firstname}}
+                                                {{user.name.lastname}}</h4>
                                             {{!-- <p class="mb-0">{{user.email}}</p> --}}
                                             {{!-- <div class="mt-2">
                                                 <button class="btn btn-primary" type="button">
@@ -51,14 +47,17 @@
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label>Full Name</label>
-                                                                <text class="form-control" name="name">{{user.name.firstname}} {{user.name.lastname}}</text>
+                                                                <text class="form-control"
+                                                                    name="name">{{user.name.firstname}}
+                                                                    {{user.name.lastname}}
+                                                                </text>
                                                             </div>
                                                         </div>
                                                         {{!-- <div class="col">
                                                             <div class="form-group">
                                                                 <label>Username</label>
-                                                                {{!-- <input class="form-control" type="text" name="username"
-                                                                    placeholder="{{user.email}}" > 
+                                                                {{!-- <input class="form-control" type="text"
+                                                                    name="username" placeholder="{{user.email}}">
                                                             </div>
                                                         </div> --}}
                                                     </div>
@@ -66,7 +65,9 @@
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label>Email</label>
-                                                                <text class="form-control" id='profileemail' >{{user.email}}</text>
+                                                                <text class="form-control"
+                                                                    id='profileemail'>{{user.email}}
+                                                                </text>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -74,19 +75,23 @@
                                                         <div class="col mb-3">
                                                             <div class="form-group">
                                                                 <label for="interests">Interests</label>
-                                                                <input class="form-control" id="interests" name="interests" value="{{user.interests}}"> </input>
+                                                                <input class="form-control" id="interests"
+                                                                    name="interests" value="{{user.interests}}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                 <div class="col d-flex justify-content-end">
-                                                    <button class="btn btn-primary" type="button" onclick="location.href='/home';">Home</button>
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn btn-primary" type="button"
+                                                        onclick="location.href='/home';">Home</button>
                                                 </div>
 
                                                 <div class="col d-flex justify-content-end">
-                                                    <button class="btn btn-primary" type="submit" onclick="inputinterests()" id="savechanges">Save Changes</button>
+                                                    <button class="btn btn-primary" type="submit"
+                                                        onclick="inputinterests()" id="savechanges">Save
+                                                        Changes</button>
                                                 </div>
 
                                             </div>
