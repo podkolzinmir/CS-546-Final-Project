@@ -151,26 +151,9 @@
               <!-- Add icon library -->
               <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-              <input type="checkbox" onclick="myFunction(this)" id={{this.link}} class="fa fa-heart" />
-              <script>
-                function myFunction(x) {
-                  x.classList.toggle("red");
-                }
-              </script>
-              <script>
-                $(document).ready(function () {
-                  $('input[type="checkbox"]').click(function () {
-                    if ($(this).prop("checked") == true) {
-                      console.log("Checkbox is checked.");
-                    }
-                    else if ($(this).prop("checked") == false) {
-                      console.log("Checkbox is unchecked.");
-                    }
-
-
-                  });
-                });
-              </script>
+              <input type="checkbox" onclick="likebtn(this)" id={{this.link}} class="fa fa-heart like" />
+              
+              
 
 
             </div>

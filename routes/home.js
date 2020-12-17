@@ -171,9 +171,6 @@ router.post("/updateint",async function(req,res){
   res.render("differentPages/EditProfile",{user:updateduser});
 })
 
-router.post("/likeButton", async function(req,res){
-  console.log(req.body);
-})
 
 router.post("/keywordsearch",async function(req,res){
   console.log(req.body.search);
@@ -208,6 +205,7 @@ router.post("/keywordsearch",async function(req,res){
 
 router.post("/likeButton", async function(req, res){
   //req.body.link is a string
+  console.log(req.body)
   try {
     id = req.session.user._id;
     await addUrls(id, req.body.link);
