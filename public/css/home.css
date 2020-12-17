@@ -65,12 +65,17 @@ ul li:hover a {
 #topic, #exampleModalLongTitle{
   font-size: 25px;
 }
-#content{
+.blue_content{
   font-size: 20px;
   color: #0072ee;
 }
 
-#summary_btn, #read_btn{
+.blue_content_topic{
+  font-size: 20px;
+  color: #006ee5;
+}
+
+.blue_btn{
   background-color: #0072ee;
 }
 

@@ -7,11 +7,11 @@
             <form action="/signin" method="POST">
                 <div class="form-group text-center">
                     <label style="padding-top: 15px; font-size: 20px;" for="email">Enter Email</label><br>
-                    <input class="input-login" type="text" placeholder="Email" name="username" id="email" />
+                    <input class="input-login" type="text" placeholder="Email" name="username" id="email" required/>
                 </div>
                 <div class="form-group text-center">
                     <label style="font-size: 20px;" for="password">Password</label><br>
-                    <input class="input-login" type="password" placeholder="Password" name="password" id="password" />
+                    <input class="input-login" type="password" placeholder="Password" name="password" id="password" required/>
                 </div>
                 {{#if hasErrors}}
                 <p class="text-danger">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="border-top card-body text-left">New User? <a href="/signup"
                         class=" register-login-link" id="loginlink">Register</a>
-                    <a style="float: right;" href='/reset-password'
+                    <a style="float: right; color:#0072ee" href='/reset-password'
                         class=" reset-password-login-link" id="resetlink">Forgot Password?</a>
                 </div>
             </form>
