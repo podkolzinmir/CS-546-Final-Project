@@ -140,11 +140,11 @@ async function updatePassword(id, newPass){
   }
 }
 
-async function addUrls(id, newUrls){
+async function updateUrls(id, newUrl){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
   }
-  if (newUrls == null || typeof newUrls != 'string'){
+  if (newUrl == null || typeof newUrl != 'string'){
      throw "url must be a string";
    }
    /*var urlFail = true;
@@ -161,25 +161,12 @@ async function addUrls(id, newUrls){
    if (user == null){
      throw "user not found";
    }
-   var urlFound;
-   var updatedUrls = user.URLs
-     urlFound = false;
-     for(j=0;j<user.URLs.length;j++){
-       if(newUrls==user.URLs[j]){
-         urlFound = true;
-       }
-     }
-     if(urlFound==false){
-       updatedUrls.push(newUrls);
-     }
-   
+   updatedUrls = user.URLs
+   updatedUrls.push(newUrl)
    let updatedUser = {
      URLs: updatedUrls
    }
    const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
-   if(updateResult.modifiedCount == 0){
-       throw "no new urls";
-   }
    return getById(id);
   try{
 
@@ -187,7 +174,7 @@ async function addUrls(id, newUrls){
     throw "failed to update user";
   }
 }
-
+/*
 async function removeUrls(id, urlsToRemove){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
@@ -233,7 +220,7 @@ async function removeUrls(id, urlsToRemove){
     throw "failed to update user";
   }
 }
-
+*/
 async function getAll() {
   const usersCollection = await users();
   const usersList = await usersCollection.find({}).toArray();
@@ -244,9 +231,8 @@ module.exports = {
   create: create,
   get: get,
   getAll: getAll,
-  addUrls: addUrls,
+  updateUrls: updateUrls,
   updateInterests: updateInterests,
   updatePassword: updatePassword,
-  removeUrls: removeUrls,
   getById: getById
 }
