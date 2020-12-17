@@ -207,12 +207,10 @@ router.post("/keywordsearch",async function(req,res){
 })
 
 router.post("/likeButton", async function(req, res){
-  console.log(req.body.link);
-
+  //req.body.link is a string
   try {
     id = req.session.user._id;
     await addUrls(id, req.body.link);
-    console.log("made it here")
   } catch (error) {
     console.log(error);
   }
