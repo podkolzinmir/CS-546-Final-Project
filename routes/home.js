@@ -4,14 +4,18 @@ const news = require('gnews');
 const data = require("../data");
 const keyworddb =require("../data/keywords");
 const articlesdb = require("../data/articles")
-const { updateUrls } = require("../data/users");;
+// const updateUrls  = require("../data/users");;
+// const removeUrls = require("../data/users")
 const usersdb = require("../data/users");
+const xss = require('xss');
 
-var AYLIENTextAPI = require('aylien_textapi');
-    var textapi = new AYLIENTextAPI({
-    application_id: "YOUR_APP_ID",
-    application_key: "YOUR_APP_KEY"
-    });
+
+// var AYLIENTextAPI = require('aylien_textapi');
+// const { delete } = require('./main');
+//     var textapi = new AYLIENTextAPI({
+//     application_id: "YOUR_APP_ID",
+//     application_key: "YOUR_APP_KEY"
+//     });
 
 let num = 10;
 let sidearticles = [];
@@ -162,18 +166,45 @@ router.get("/us",async function(req,res){
   res.render("differentPages/homePage",{articles: usfeed, interests_length: interests.length})
 });
 
+router.get("/likedarticles", async function(req,res){
+  let likedarticles = [];
+  let articleobject = {};
+  for (let item of req.session.user.URLs){
+    let articleliked =  await articlesdb.getByUrl(item);
+    likedarticles.push(articleliked);
+  }
+  for (let i =0; i<likedarticles.length; i++){
+    // console.log(likedarticles[i]);
+    likedarticles[i].link = likedarticles[i].article_URL;
+    likedarticles[i].title = likedarticles[i].title;
+    likedarticles[i].pubDate = likedarticles[i].date_published;
+    likedarticles[i].keyword = likedarticles[i].keywords[0];
+    delete likedarticles[i].date_published;
+    delete likedarticles[i].keywords[0];
+    delete likedarticles[i].article_URL;
+   
+
+  }
+  req.session.user.URLs = likedarticles;
+  
+
+  res.render("differentPages/homePage",{articles: likedarticles, interests_length: interests.length});
+
+})
+
 router.post("/updateint",async function(req,res){
-  console.log(Object.keys(req.body)[0].split(','));
+  // console.log(Object.keys(req.body)[0].split(','));
   let newintarray = Object.keys(req.body)[0].split(',');
   let updateduser = await usersdb.updateInterests(req.session.user._id, newintarray);
-  console.log(updateduser);
+  // console.log(updateduser);
   req.session.user.interests = updateduser.interests;
   res.render("differentPages/EditProfile",{user:updateduser});
 })
 
 router.post("/keywordsearch",async function(req,res){
-  console.log(req.body.search);
-  let searchkeyword = req.body.search;
+  // console.log(req.body.search);
+
+  let searchkeyword = xss(req.body.search);
   let listofarticles = [];
 
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
@@ -182,7 +213,7 @@ router.post("/keywordsearch",async function(req,res){
   if(!keyworddata || keyworddata == null){
     let articlelist = await news.search(searchkeyword,{n : 10});
     articlelist.forEach(v => {v.keyword = searchkeyword;});
-    console.log(articlelist);
+    // console.log(articlelist);
     return res.render("differentPages/homePage",{articles: articlelist, interests_length: interests.length});
   }
 
@@ -204,16 +235,16 @@ router.post("/keywordsearch",async function(req,res){
 
 router.post("/likeButton", async function(req, res){
   //req.body.link is a string
-  console.log(req.body)
+  // console.log(req.body)
   try {
     id = req.session.user._id;
     if(req.body.check=='true')
     {
-      await addUrls(id, req.body.link);
+      await usersdb.updateUrls(id, req.body.link);
     }
     if(req.body.check=='false')
     {
-      await removeUrls(id, req.body.link);
+      await usersdb.removeUrls(id, req.body.link);
     }
     
 

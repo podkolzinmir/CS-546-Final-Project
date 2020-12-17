@@ -220,6 +220,7 @@ module.exports = {
   get: get,
   getAll: getAll,
   updateUrls: updateUrls,
+  removeUrls: removeUrls,
   updateInterests: updateInterests,
   updatePassword: updatePassword,
   getById: getById
