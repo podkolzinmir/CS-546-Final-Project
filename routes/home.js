@@ -170,6 +170,9 @@ router.post("/updateint",async function(req,res){
   res.render("differentPages/EditProfile",{user:updateduser});
 })
 
+router.post("/likeButton", async function(req,res){
+  console.log(req.body);
+})
 
 router.post("/keywordsearch",async function(req,res){
   console.log(Object.keys(req.body)[0]);
@@ -180,9 +183,10 @@ router.post("/keywordsearch",async function(req,res){
   
   
   if(!keyworddata || keyworddata == null){
-    let articlelist = await getarticles(searchkeyword);
+    let articlelist = await news.search(searchkeyword,{n : 10});
     articlelist.forEach(v => {v.keyword = searchkeyword;});
-    res.render("differentPages/homePage",{articles: articlelist, interests_length: interests.length});
+    console.log(articlelist);
+    return res.render("differentPages/homePage",{articles: articlelist, interests_length: interests.length});
   }
 
   else{
@@ -191,13 +195,10 @@ router.post("/keywordsearch",async function(req,res){
       let articlebyurl = await articlesdb.getByUrl(i)
       listofarticles.push(articlebyurl);
     }
-    res.render("differentPages/homePage",{articles: listofarticles.slice(1,10), interests_length: interests.length});
+    console.log(listofarticles.slice(1,10));
+    return res.render("differentPages/homePage",{articles: listofarticles.slice(1,10), interests_length: interests.length});
 
   }
-
-
-
-  
   // res.render("differentPages/EditProfile",{user:updateduser});
 })
 
