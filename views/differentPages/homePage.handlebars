@@ -20,7 +20,7 @@
 <div class="container-fluid">
   <div class="row">
     <nav id="nav-bar-home" class="navbar navbar-expand-lg navbar-light fixed-top navbar-bgg">
-      <a class="navbar-brand" href="http://localhost:3000/" style="color: white;">LOGO</a>
+      <img class="navbar-brand" style="color: white;" src="https://cdn0.iconfinder.com/data/icons/free-daily-icon-set/512/Task-32.png" alt="Logo-Image"/>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,7 @@
                   {{#each interests}}
                   <li class="divider"></li>
                   <li>
-                    <label for="int">{{this}}</label>
+                    <label>{{this}}</label>
                     <input type="checkbox" checked value={{this}}>
                     {{!-- <span class="lbl"> {{this}}</span> --}}
                   </li>
@@ -73,11 +73,11 @@
           </li>
         </ul>
         <!--Make sure the form has the autocomplete function switched off:-->
-        <form autocomplete="off" action="/action_page.php">
+        <form autocomplete="off" action="/home/keywordsearch" method="POST">
           <div class="autocomplete" style="width:300px;">
             <input id="myInput" type="text" name="search" placeholder="Search by Keyword">
           </div>
-          <input type="submit" value="Search" id="keywordsearch" onclick="searchkeyword()">
+          <input type="submit" value="Search" id="keywordsearch">
         </form>
         <script src="public/JS/search.js"></script>
       </div>
@@ -208,7 +208,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <label for="">Please add your interests by going to User Profile</label><br>
+            <label>Please add your interests by going to User Profile</label><br>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Skip</button>
             <button type="button" class="btn btn-primary" id="modalSave" onclick="
                   location.href='http://localhost:3000/home/userprofile' ;">Go to User Profile</button>

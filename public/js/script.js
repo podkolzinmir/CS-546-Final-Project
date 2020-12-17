@@ -23,7 +23,7 @@ function inputinterests(){
 
 function searchkeyword(){
 
-    $(document).on('click','#keywordsearch',function(e){
+    $(document).off('click').on('click','#keywordsearch',function(e){
         e.preventDefault();
         let inputkeyword = document.getElementById('myInput').value;
 
@@ -31,14 +31,39 @@ function searchkeyword(){
             type:'POST',
             url :'/home/keywordsearch',
             data : inputkeyword,
-            success:function(){
-                location.reload(true);
+            success:function(response){
+                console.log(response);
+                
+            },
+            error: function(error){
+                if(error.responseText == 'showAlert'){
+                    alert("Please enter a Valid Keyword, Keyword not found!!");
+                    event.stopImmediatePropagation();
+                }
             }
         })
     })
 
  }
 
+ function likebtn(x){
+
+    x.classList.toggle("red");
+
+    $(document).ready(function() {
+        $('#heart').off('clcik').on('click',function(e) {
+            if($(this).prop("checked") == true) {
+              console.log("Checkbox is checked.");
+              
+            }
+            else if($(this).prop("checked") == false) {
+              console.log("Checkbox is unchecked.");
+            }
+           
+              
+          });
+      });
+ }
 
  $(document).ready(function () {
    $('#col3').change(function () {
