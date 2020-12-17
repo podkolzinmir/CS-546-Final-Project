@@ -155,72 +155,60 @@ async function updateUrls(id, newUrl){
    }if(urlFail == true){
      throw "at least one element of urls must be a nonempty string.";
    }*/
-   const objId = new ObjectId(id);
-   const usersCollection = await users();
-   const user = await usersCollection.findOne({ _id: objId });
-   if (user == null){
-     throw "user not found";
-   }
-   updatedUrls = user.URLs
-   updatedUrls.push(newUrl)
-   let updatedUser = {
-     URLs: updatedUrls
-   }
-   const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
-   return getById(id);
   try{
-
+    const objId = new ObjectId(id);
+    const usersCollection = await users();
+    const user = await usersCollection.findOne({ _id: objId });
+    if (user == null){
+      throw "user not found";
+    }
+    updatedUrls = user.URLs
+    updatedUrls.push(newUrl)
+    let updatedUser = {
+      URLs: updatedUrls
+    }
+    const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
+    return getById(id);
   }catch(e){
     throw "failed to update user";
   }
 }
-/*
-async function removeUrls(id, urlsToRemove){
+
+async function removeUrls(id, urlToRemove){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
-  }if(urlsToRemove == null || typeof urlsToRemove != 'string'){
+  }if(urlToRemove == null || typeof urlToRemove != 'string'){
      throw "url must be a string";
    }
-   var urlFail = true;
-   for(i=0;i<urlsToRemove.length;i++){
-     if(typeof urlsToRemove[i] == 'string' && urlsToRemove[i] != ''){
-       urlFail = false;
-     }
-   }if(urlFail == true){
-     throw "at least one element of urls must be a nonempty string.";
-   }
-   const objId = new ObjectId(id);
-   const usersCollection = await users();
-   const user = await usersCollection.findOne({ _id: objId });
-   if (user == null){
-     throw "user not found";
-   }
-   var urlFound;
-   var updatedUrls = user.URLs;
-   var urlsIndex = [];
-   for(i=0;i<user.URLs.length;i++){
-     for(j=0;j<urlsToRemove.length;j++){
-       if(user.URLs[i]==urlsToRemove[j]){
-         updatedUrls.remove(user.URLs[i])
-       }
-     }
-   }
-   let updatedUser = {
-     URLs: updatedUrls
-   }
-   const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
-   if (updateResult.modifiedCount == 0) {
-       throw "no new urls";
-   }
-   return getById(id);
-  try{
 
+  try{
+    const objId = new ObjectId(id);
+    const usersCollection = await users();
+    const user = await usersCollection.findOne({ _id: objId });
+    if (user == null){
+      throw "user not found";
+    }
+    var urlFound = false;
+    var updatedUrls = user.URLs;
+    for(i=0;i<user.URLs.length;i++){
+      if(user.URLs[i]==urlToRemove){
+        updatedUrls.remove(user.URLs[i])
+        urlFound = true;
+      }
+    }if(urlFound==false){
+      throw "url was not in user.URLs"
+    }
+    let updatedUser = {
+      URLs: updatedUrls
+    }
+    const updateResult = await usersCollection.updateOne({ _id: objId }, { $set: updatedUser });
+    return getById(id);
 
   }catch(e){
     throw "failed to update user";
   }
 }
-*/
+
 async function getAll() {
   const usersCollection = await users();
   const usersList = await usersCollection.find({}).toArray();
