@@ -89,7 +89,7 @@ router.get("/", async function (req, res) {
     if(!interests || interests == null || interests.length==0){
 
       const ArticleData = await getusnewsheadlines();
-      ArticleData.forEach(v => {v.keyword = "US News Headline";});
+      ArticleData.forEach(v => {v.keyword = "US News";});
       ArticleData.forEach(elements => articles.push(elements) );
 
     }
@@ -158,7 +158,7 @@ router.get("/entertainment",async function(req,res){
 
 router.get("/us",async function(req,res){
   const usfeed = await getusnewsheadlines();
-  usfeed.forEach(v => {v.keyword = "US Headline";});
+  usfeed.forEach(v => {v.keyword = "US-News";});
   res.render("differentPages/homePage",{articles: usfeed, interests_length: interests.length})
 });
 
@@ -176,8 +176,8 @@ router.post("/likeButton", async function(req,res){
 })
 
 router.post("/keywordsearch",async function(req,res){
-  console.log(Object.keys(req.body)[0]);
-  let searchkeyword = Object.keys(req.body)[0];
+  console.log(req.body.search);
+  let searchkeyword = req.body.search;
   let listofarticles = [];
 
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);

@@ -31,7 +31,8 @@ function searchkeyword(){
             type:'POST',
             url :'/home/keywordsearch',
             data : inputkeyword,
-            success:function(){
+            success:function(response){
+                console.log(response);
                 
             },
             error: function(error){
