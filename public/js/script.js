@@ -95,6 +95,7 @@ $(document).on('click', '#conatiner li input', function(){
 //     var divid = $("div > a").attr('href');
 //     console.log(divid);
 // });
+<<<<<<< HEAD
 
 function likeBttn(x){
         heart_btn = $(x).attr('id');
@@ -109,3 +110,16 @@ function likeBttn(x){
         });
 }
 
+=======
+ $(document).off('click').on('click','div.card div.card-body input', function(){
+     heart_btn = $(this).attr('id');
+     $.ajax({
+         type: 'POST',
+         url: '/home/likeButton',
+         data: {link: heart_btn},
+       success:function(){
+       console.log("successfully added to likes");
+       }
+     })
+});
+>>>>>>> 0c21abde1a3ffa807bcdbbef1bb97c6e093550a6
