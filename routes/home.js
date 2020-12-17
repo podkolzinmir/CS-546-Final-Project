@@ -4,7 +4,7 @@ const news = require('gnews');
 const data = require("../data");
 const keyworddb =require("../data/keywords");
 const articlesdb = require("../data/articles")
-const { addUrls } = require("../data/users");;
+const { updateUrls } = require("../data/users");;
 const usersdb = require("../data/users");
 
 var AYLIENTextAPI = require('aylien_textapi');
@@ -25,7 +25,7 @@ let health = [];
 
 const getarticles = async (keyword) => {
   const starship = await news.search(keyword,{n : num});
-  
+
   return starship;
 
 };
@@ -93,10 +93,10 @@ router.get("/", async function (req, res) {
       ArticleData.forEach(elements => articles.push(elements) );
 
     }
-    
-    
+
+
     for(let item in interests){
-      
+
       const ArticleData = await getarticles(interests[item]);
       ArticleData.forEach(v => {v.keyword = interests[item];});
       ArticleData.forEach(elements => articles.push(elements) );
@@ -177,8 +177,8 @@ router.post("/keywordsearch",async function(req,res){
   let listofarticles = [];
 
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
-  
-  
+
+
   if(!keyworddata || keyworddata == null){
     let articlelist = await news.search(searchkeyword,{n : 10});
     articlelist.forEach(v => {v.keyword = searchkeyword;});
@@ -187,7 +187,7 @@ router.post("/keywordsearch",async function(req,res){
   }
 
   else{
-    
+
     for (let i of keyworddata.URLs){
       let articlebyurl = await articlesdb.getByUrl(i)
       listofarticles.push(articlebyurl);
@@ -206,7 +206,7 @@ router.post("/likeButton", async function(req, res){
   //req.body.link is a string
   try {
     id = req.session.user._id;
-    await addUrls(id, req.body.link);
+    newUrls = await updateUrls(id, req.body.link);
   } catch (error) {
     console.log(error);
   }
@@ -214,4 +214,3 @@ router.post("/likeButton", async function(req, res){
 
 
 module.exports = router
-
