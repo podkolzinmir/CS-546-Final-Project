@@ -3,7 +3,8 @@ const router = express.Router();
 const news = require('gnews');
 const data = require("../data");
 const keyworddb =require("../data/keywords");
-const articlesdb = require("../data/articles");
+const articlesdb = require("../data/articles")
+const { addUrls } = require("../data/users");;
 const usersdb = require("../data/users");
 
 var AYLIENTextAPI = require('aylien_textapi');
@@ -177,11 +178,23 @@ router.post("/keywordsearch",async function(req,res){
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
   console.log(keyworddata)
   // res.render("differentPages/EditProfile",{user:updateduser});
+
+
+
 })
 
 router.post("/likeButton", async function(req, res){
-  console.log('req.body');
+  console.log(req.body.link);
+
+  try {
+    id = req.session.user._id;
+    await addUrls(id, req.body.link);
+    console.log("made it here")
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 
 module.exports = router
+
