@@ -96,3 +96,15 @@ $(document).on('click', '#conatiner li input', function(){
 //     console.log(divid);
 // });
 
+function likeBttn(x){
+        heart_btn = $(x).attr('id');
+        console.log(heart_btn);
+        $.ajax({
+            type: 'POST',
+            url: '/home/likeButton',
+            data: {link: heart_btn},
+          success:function(){
+          console.log("successfully added to likes");
+          }
+        });
+}
