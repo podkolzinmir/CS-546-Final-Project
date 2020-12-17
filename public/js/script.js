@@ -57,11 +57,11 @@ $(document).on('click', '#conatiner li input', function(){
     ch = this.checked;
         if(this.checked == false){
             if ($('.ll').text() == 'Technology'){
-                $("[id*="+checkbox_id+"").hide();
+                $("[data-value*="+checkbox_id+"").hide();
         } 
         }else {
             if(this.checked == true ){
-                $("[id*="+checkbox_id+"").show();
+                $("[data-value*="+checkbox_id+"").show();
             }
         }
 });
@@ -71,15 +71,15 @@ $(document).on('click', '#conatiner li input', function(){
 //     console.log(divid);
 // });
 
-$(document).off('click').on('click','div.card div.card-body input', function(){
-    heart_btn = $(this).attr('id');
-    console.log(heart_btn);
-    $.ajax({
-        type: 'POST',
-        url: '/home/likeButton',
-        data: {link: heart_btn},
-      success:function(){
-      console.log("successfully added to likes");
-      }
-    })
-});
+// $(document).off('click').on('click','div.card div.card-body input', function(){
+//     heart_btn = $(this).attr('id');
+//     console.log(heart_btn);
+//     $.ajax({
+//         type: 'POST',
+//         url: '/home/likeButton',
+//         data: {link: heart_btn},
+//       success:function(){
+//       console.log("successfully added to likes");
+//       }
+//     })
+// });
