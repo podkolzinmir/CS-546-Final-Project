@@ -83,7 +83,12 @@ router.post("/signup", async function (req, res) {
   if (password !== passwordConfirm)
     errors.push("Password and confirmation don't match");
   const hashedPassword = await bcrypt.hash(password, 10);
-
+	users = await userData.getAll();
+	for(i=0;i<users.length;i++){
+		if(users[i].email==email){
+			errors.push("The provided emails is not unique");
+		}
+	}
   // const checkuser = await userData.get(email.toLowerCase);
 
   // if(checkuser){
@@ -101,22 +106,36 @@ router.post("/signup", async function (req, res) {
     sec_question: sec_question,
     sec_answer: sec_answer
   };
-  try {
-    const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
-    return res.redirect("/login");
+	if(errors.length==0){
+		try {
+	    const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
+	    return res.redirect("/login");
 
-} catch (e) {
-  if (errors.length > 0) {
-    return res.status(400).render("differentPages/Signup", { errors, user });
-  } else {
-    try {
-    } catch (e) {
-      return res
-        .status(500)
-        .render("differentPages/Signup", { errors: [e], user });
-    }
-  }
+	} catch (e) {
+	  if (errors.length > 0) {
+	    return res.status(400).render("differentPages/Signup", { errors, user });
+	  } else {
+	    try {
+	    } catch (e) {
+	      return res
+	        .status(500)
+	        .render("differentPages/Signup", { errors: [e], user });
+	    }
+	  }
+	}
+}else{
+	if (errors.length > 0) {
+		return res.status(400).render("differentPages/Signup", { errors, user });
+	} else {
+		try {
+		} catch (e) {
+			return res
+				.status(500)
+				.render("differentPages/Signup", { errors: [e], user });
+		}
+	}
 }
+
 
 });
 
@@ -309,25 +328,20 @@ router.post("/reset-password", async(req, res) => {
   if (req.body.email !== undefined) {
         var emailAddress = req.body.email;
 
-        // TODO: Using email, find user from your database.
+
         const user = await userData.get(emailAddress);
         console.log(user);
         var payload = {
-            id: user._id,        // User ID from database
+            id: user._id,
             email: emailAddress
         };
 
-        // TODO: Make this a one-time-use token by using the user's
-        // current password hash from the database, and combine it
-        // with the user's created date to make a very unique secret key!
-        // For example:
-        // var secret = user.password + ‘-' + user.created.getTime();
+
         var secret = user.password;
 
         var token = jwt.encode(payload, secret);
 
-        // TODO: Send email containing link to reset password.
-        // In our case, will just return a link to click.
+
         var transporter = nodemailer.createTransport({
           service: 'Gmail',
           auth: {
@@ -356,21 +370,14 @@ router.post("/reset-password", async(req, res) => {
 });
 
 router.get('/resetpassword/:id/:token', async(req, res) => {
-    // TODO: Fetch user from database using
-    // req.params.id
-    // TODO: Decrypt one-time-use token using the user's
-    // current password hash from the database and combine it
-    // with the user's created date to make a very unique secret key!
-    // For example,
-    // var secret = user.password + ‘-' + user.created.getTime();
+
     var id = req.params.id
     user = await userData.getById(id);
     console.log(user);
     var secret = user.password;
     var payload = jwt.decode(req.params.token, secret);
 
-    // TODO: Gracefully handle decoding issues.
-    // Create form to reset password.
+
     res.send('<form action="/resetpassword" method="POST">' +
         '<input type="hidden" name="id" value="' + payload.id + '" />' +
         '<input type="hidden" name="token" value="' + req.params.token + '" />' +
@@ -380,13 +387,7 @@ router.get('/resetpassword/:id/:token', async(req, res) => {
 });
 
 router.post('/resetpassword', async(req, res) => {
-    // TODO: Fetch user from database using
-    // req.body.id
-    // TODO: Decrypt one-time-use token using the user's
-    // current password hash from the database and combining it
-    // with the user's created date to make a very unique secret key!
-    // For example,
-    // var secret = user.password + ‘-' + user.created.getTime();
+
     id = req.body.id;
     user = await userData.getById(id);
 
@@ -394,13 +395,14 @@ router.post('/resetpassword', async(req, res) => {
 
     var payload = jwt.decode(req.body.token, secret);
 
-    // TODO: Gracefully handle decoding issues.
-    // TODO: Hash password from
-    // req.body.password
+
     password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, 10);
     updatedUser = await userData.updatePassword(id, hashedPassword);
-    res.send('Your password has been successfully changed.');
+    res.send('Your password has been successfully changed.' +
+    '<a style="float: none;" href="/login" class=" login-link" id="resetlink">Back to login page</a>'
+    );
+    
 });
 
 

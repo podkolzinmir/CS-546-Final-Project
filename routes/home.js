@@ -13,7 +13,7 @@ var AYLIENTextAPI = require('aylien_textapi');
     application_key: "YOUR_APP_KEY"
     });
 
-let num = 0
+let num = 10;
 let sidearticles = [];
 let newsheadline=[];
 let business=[];
@@ -69,11 +69,11 @@ const healthfunc = async() => {
   return health;
 }
 
-const worldfunc = async() => {
-  world = await news.topic('WORLD',{n:10});
-  world.forEach(v => {v.keyword = "World";});
-  return world;
-}
+// const worldfunc = async() => {
+//   world = await news.topic('WORLD',{n:10});
+//   world.forEach(v => {v.keyword = "World";});
+//   return world;
+// }
 
 
 let interests = [];
@@ -89,7 +89,7 @@ router.get("/", async function (req, res) {
     if(!interests || interests == null || interests.length==0){
 
       const ArticleData = await getusnewsheadlines();
-      ArticleData.forEach(v => {v.keyword = "US News Headline";});
+      ArticleData.forEach(v => {v.keyword = "US News";});
       ArticleData.forEach(elements => articles.push(elements) );
 
     }
@@ -150,15 +150,15 @@ router.get("/entertainment",async function(req,res){
   res.render("differentPages/homePage",{articles: entertainmentfeed, interests_length: interests.length})
 });
 
-router.get("/world",async function(req,res){
-  const worldfeed = await worldfunc();
-  res.render("differentPages/homePage",{articles: worldfeed, interests_length: interests.length})
-});
+// router.get("/world",async function(req,res){
+//   const worldfeed = await worldfunc();
+//   res.render("differentPages/homePage",{articles: worldfeed, interests_length: interests.length})
+// });
 
 
 router.get("/us",async function(req,res){
   const usfeed = await getusnewsheadlines();
-  usfeed.forEach(v => {v.keyword = "US Headline";});
+  usfeed.forEach(v => {v.keyword = "US-News";});
   res.render("differentPages/homePage",{articles: usfeed, interests_length: interests.length})
 });
 
@@ -171,12 +171,35 @@ router.post("/updateint",async function(req,res){
   res.render("differentPages/EditProfile",{user:updateduser});
 })
 
+router.post("/likeButton", async function(req,res){
+  console.log(req.body);
+})
 
 router.post("/keywordsearch",async function(req,res){
-  console.log(Object.keys(req.body)[0]);
-  let searchkeyword = Object.keys(req.body)[0];
+  console.log(req.body.search);
+  let searchkeyword = req.body.search;
+  let listofarticles = [];
+
   let keyworddata = await keyworddb.getByKeyword(searchkeyword);
-  console.log(keyworddata)
+  
+  
+  if(!keyworddata || keyworddata == null){
+    let articlelist = await news.search(searchkeyword,{n : 10});
+    articlelist.forEach(v => {v.keyword = searchkeyword;});
+    console.log(articlelist);
+    return res.render("differentPages/homePage",{articles: articlelist, interests_length: interests.length});
+  }
+
+  else{
+    
+    for (let i of keyworddata.URLs){
+      let articlebyurl = await articlesdb.getByUrl(i)
+      listofarticles.push(articlebyurl);
+    }
+    console.log(listofarticles.slice(1,10));
+    return res.render("differentPages/homePage",{articles: listofarticles.slice(1,10), interests_length: interests.length});
+
+  }
   // res.render("differentPages/EditProfile",{user:updateduser});
 
 

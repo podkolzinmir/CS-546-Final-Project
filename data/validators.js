@@ -1,3 +1,5 @@
+userData = require('./users');
+
 module.exports = {
   isNonEmptyString(inputString) {
     return (
@@ -12,6 +14,13 @@ module.exports = {
   isValidEmail(email) {
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return typeof email === "string" && email.match(mailformat);
+  },
+  async isUniqueEmail(email){
+    user = await userData.get(email);
+    if(user!=null){
+      return false;
+    }
+    return true;
   },
   isValidPassword(pw) {
     return this.isNonEmptyString(pw) && pw.length >= 8;

@@ -17,7 +17,6 @@ exports.forgot_password = function(req, res) {
       });
     },
     function(user, done) {
-      // create the random token
       crypto.randomBytes(20, function(err, buffer) {
         var token = buffer.toString('hex');
         done(err, user, token);
