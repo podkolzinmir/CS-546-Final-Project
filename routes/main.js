@@ -419,7 +419,10 @@ router.post('/resetpassword', async(req, res) => {
     password = req.body.password;
     const hashedPassword = await bcrypt.hash(password, 10);
     updatedUser = await userData.updatePassword(id, hashedPassword);
-    res.send('Your password has been successfully changed.');
+    res.send('Your password has been successfully changed.' +
+    '<a style="float: none;" href="/login" class=" login-link" id="resetlink">Back to login page</a>'
+    );
+    
 });
 
 
