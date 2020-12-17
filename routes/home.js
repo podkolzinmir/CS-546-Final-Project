@@ -204,9 +204,19 @@ router.post("/keywordsearch",async function(req,res){
 
 router.post("/likeButton", async function(req, res){
   //req.body.link is a string
+  console.log(req.body)
   try {
     id = req.session.user._id;
-    newUrls = await updateUrls(id, req.body.link);
+    if(req.body.check=='true')
+    {
+      await addUrls(id, req.body.link);
+    }
+    if(req.body.check=='false')
+    {
+      await removeUrls(id, req.body.link);
+    }
+    
+
   } catch (error) {
     console.log(error);
   }

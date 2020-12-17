@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/home" style="color: white;">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="http://localhost:3000/home/userprofile" style="color: white;">User Profile</a>
@@ -95,7 +95,7 @@
           {{!-- <header>Topics</header> --}}
           <ul>
             <li><a href="/home"> Home</a></li>
-            <li><a href="/home/world"> World</a></li>
+            {{!-- <li><a href="/home/world"> World</a></li> --}}
             <li><a href="/home/us"> U.S.</a></li>
             <li><a href="/home/sports"> Sports</a></li>
             <li><a href="/home/business"> Business</a></li>
@@ -151,7 +151,7 @@
               <!-- Add icon library -->
               <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-              <input type="checkbox" onclick="myFunction(this); likeBttn(this)" id={{this.link}} class="fa fa-heart" />
+              <input type="checkbox" onclick="myFunction(this); likeBttn(this)" id={{this.link}} class="fa fa-heart like"/>
               <script>
                 function myFunction(x) {
                   x.classList.toggle("red");

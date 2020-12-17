@@ -50,19 +50,19 @@ function searchkeyword(){
 
     x.classList.toggle("red");
 
-    $(document).ready(function() {
-        $('#heart').off('clcik').on('click',function(e) {
-            if($(this).prop("checked") == true) {
-              console.log("Checkbox is checked.");
-              
-            }
-            else if($(this).prop("checked") == false) {
-              console.log("Checkbox is unchecked.");
-            }
-           
-              
-          });
-      });
+    // $(document).off('click').on('click','.like', function(){
+    //     heart_btn = $(this).attr('id');
+    //     console.log(heart_btn);
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/home/likeButton',
+    //         data: {link: heart_btn},
+    //       success:function(response){
+    //         console.log(response)
+    //       console.log("successfully added to likes");
+    //       }
+    //     })
+    // });
  }
 
  $(document).ready(function () {
@@ -95,31 +95,17 @@ $(document).on('click', '#conatiner li input', function(){
 //     var divid = $("div > a").attr('href');
 //     console.log(divid);
 // });
-<<<<<<< HEAD
 
 function likeBttn(x){
         heart_btn = $(x).attr('id');
-        console.log(heart_btn);
+        check = x.checked;
+        console.log(heart_btn, check);
         $.ajax({
             type: 'POST',
             url: '/home/likeButton',
-            data: {link: heart_btn},
+            data: {link: heart_btn, check:check},
           success:function(){
           console.log("successfully added to likes");
           }
         });
 }
-
-=======
- $(document).off('click').on('click','div.card div.card-body input', function(){
-     heart_btn = $(this).attr('id');
-     $.ajax({
-         type: 'POST',
-         url: '/home/likeButton',
-         data: {link: heart_btn},
-       success:function(){
-       console.log("successfully added to likes");
-       }
-     })
-});
->>>>>>> 0c21abde1a3ffa807bcdbbef1bb97c6e093550a6
