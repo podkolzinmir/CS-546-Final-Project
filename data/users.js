@@ -143,17 +143,18 @@ async function updatePassword(id, newPass){
 async function addUrls(id, newUrls){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
-  }if(!(Array.isArray(newUrls)) || newUrls.length == 0){
-     throw "urls must be a nonempty array";
+  }
+  if (newUrls == null || typeof newUrls != 'string'){
+     throw "url must be a string";
    }
-   var urlFail = true;
+   /*var urlFail = true;
    for(i=0;i<newUrls.length;i++){
      if(typeof newUrls[i] == 'string' && newUrls[i] != ''){
        urlFail = false;
      }
    }if(urlFail == true){
      throw "at least one element of urls must be a nonempty string.";
-   }
+   }*/
    const objId = new ObjectId(id);
    const usersCollection = await users();
    const user = await usersCollection.findOne({ _id: objId });
@@ -162,17 +163,16 @@ async function addUrls(id, newUrls){
    }
    var urlFound;
    var updatedUrls = user.URLs
-   for(i=0;i<newUrls.length;i++){
      urlFound = false;
      for(j=0;j<user.URLs.length;j++){
-       if(newUrls[i]==user.URLs[j]){
+       if(newUrls==user.URLs[j]){
          urlFound = true;
        }
      }
      if(urlFound==false){
-       updatedUrls.push(newUrls[i]);
+       updatedUrls.push(newUrls);
      }
-   }
+   
    let updatedUser = {
      URLs: updatedUrls
    }
@@ -191,8 +191,8 @@ async function addUrls(id, newUrls){
 async function removeUrls(id, urlsToRemove){
   if (id == null || typeof id != 'string'){
     throw "id must be a string";
-  }if(!(Array.isArray(urlsToRemove)) || urlsToRemove.length == 0){
-     throw "urls must be a nonempty array";
+  }if(urlsToRemove == null || typeof urlsToRemove != 'string'){
+     throw "url must be a string";
    }
    var urlFail = true;
    for(i=0;i<urlsToRemove.length;i++){
