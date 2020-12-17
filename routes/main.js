@@ -83,7 +83,12 @@ router.post("/signup", async function (req, res) {
   if (password !== passwordConfirm)
     errors.push("Password and confirmation don't match");
   const hashedPassword = await bcrypt.hash(password, 10);
-
+	users = await userData.getAll();
+	for(i=0;i<users.length;i++){
+		if(users[i].email==email){
+			errors.push("The provided emails is not unique");
+		}
+	}
   // const checkuser = await userData.get(email.toLowerCase);
 
   // if(checkuser){
@@ -101,22 +106,36 @@ router.post("/signup", async function (req, res) {
     sec_question: sec_question,
     sec_answer: sec_answer
   };
-  try {
-    const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
-    return res.redirect("/login");
+	if(errors.length==0){
+		try {
+	    const newUser = await userData.create({firstname: user.firstName, lastname: user.lastName}, user.email, user.sec_question, user.sec_answer, user.hashedPassword);
+	    return res.redirect("/login");
 
-} catch (e) {
-  if (errors.length > 0) {
-    return res.status(400).render("differentPages/Signup", { errors, user });
-  } else {
-    try {
-    } catch (e) {
-      return res
-        .status(500)
-        .render("differentPages/Signup", { errors: [e], user });
-    }
-  }
+	} catch (e) {
+	  if (errors.length > 0) {
+	    return res.status(400).render("differentPages/Signup", { errors, user });
+	  } else {
+	    try {
+	    } catch (e) {
+	      return res
+	        .status(500)
+	        .render("differentPages/Signup", { errors: [e], user });
+	    }
+	  }
+	}
+}else{
+	if (errors.length > 0) {
+		return res.status(400).render("differentPages/Signup", { errors, user });
+	} else {
+		try {
+		} catch (e) {
+			return res
+				.status(500)
+				.render("differentPages/Signup", { errors: [e], user });
+		}
+	}
 }
+
 
 });
 

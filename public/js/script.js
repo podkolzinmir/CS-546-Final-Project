@@ -24,7 +24,7 @@ function searchkeyword(){
     $(document).on('click','#keywordsearch',function(e){
         e.preventDefault();
         let inputkeyword = document.getElementById('myInput').value;
-        
+
         $.ajax({
             type:'POST',
             url :'/home/keywordsearch',
@@ -34,7 +34,7 @@ function searchkeyword(){
             }
         })
     })
- 
+
  }
 
 
@@ -45,7 +45,7 @@ function searchkeyword(){
             $('#int_length').fadeOut('slow');
         }else{
             $('#int_length').fadeIn('slow');
-        } 
+        }
     }
    });
  });
@@ -56,7 +56,7 @@ $(document).on('click', '#conatiner li input', function(){
         if(this.checked == false){
             if ($('.ll').text() == 'Technology'){
                 $("[id*="+checkbox_id+"").hide();
-        } 
+        }
         }else {
             if(this.checked == true ){
                 $("[id*="+checkbox_id+"").show();
@@ -69,7 +69,7 @@ $(document).on('click', '#conatiner li input', function(){
 //     console.log(divid);
 // });
 
-$(document).off('click').on('click','div.card div.card-body input', function(){
-    heart_btn = $(this).attr('id');
-    console.log(heart_btn);
-});
+//$(document).off('click').on('click','div.card div.card-body input', function(){
+  //  heart_btn = $(this).attr('id');
+    //console.log(heart_btn);
+//});
