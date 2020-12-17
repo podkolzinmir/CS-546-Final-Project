@@ -166,31 +166,31 @@ router.get("/us",async function(req,res){
   res.render("differentPages/homePage",{articles: usfeed, interests_length: interests.length})
 });
 
-router.get("/likedarticles", async function(req,res){
-  let likedarticles = [];
-  let articleobject = {};
-  for (let item of req.session.user.URLs){
-    let articleliked =  await articlesdb.getByUrl(item);
-    likedarticles.push(articleliked);
-  }
-  for (let i =0; i<likedarticles.length; i++){
-    // console.log(likedarticles[i]);
-    likedarticles[i].link = likedarticles[i].article_URL;
-    likedarticles[i].title = likedarticles[i].title;
-    likedarticles[i].pubDate = likedarticles[i].date_published;
-    likedarticles[i].keyword = likedarticles[i].keywords[0];
-    delete likedarticles[i].date_published;
-    delete likedarticles[i].keywords[0];
-    delete likedarticles[i].article_URL;
+// router.get("/likedarticles", async function(req,res){
+//   let likedarticles = [];
+//   let articleobject = {};
+//   for (let item of req.session.user.URLs){
+//     let articleliked =  await articlesdb.getByUrl(item);
+//     likedarticles.push(articleliked);
+//   }
+//   for (let i =0; i<likedarticles.length; i++){
+//     // console.log(likedarticles[i]);
+//     likedarticles[i].link = likedarticles[i].article_URL;
+//     likedarticles[i].title = likedarticles[i].title;
+//     likedarticles[i].pubDate = likedarticles[i].date_published;
+//     likedarticles[i].keyword = likedarticles[i].keywords[0];
+//     delete likedarticles[i].date_published;
+//     delete likedarticles[i].keywords[0];
+//     delete likedarticles[i].article_URL;
    
 
-  }
-  req.session.user.URLs = likedarticles;
+//   }
+//   req.session.user.URLs = likedarticles;
   
 
-  res.render("differentPages/homePage",{articles: likedarticles, interests_length: interests.length});
+//   res.render("differentPages/homePage",{articles: likedarticles, interests_length: interests.length});
 
-})
+// })
 
 router.post("/updateint",async function(req,res){
   // console.log(Object.keys(req.body)[0].split(','));

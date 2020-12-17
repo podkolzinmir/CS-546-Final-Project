@@ -1,21 +1,23 @@
-<head>
-  <link rel="stylesheet" href="/public/css/home.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      var interestss = $('#int_length').text();
-      if (interestss < '1') {
-        $('#exampleModalCenter').modal("show");
-      }
-      // Hide the Modal
-      $("#modalSave").click(function () {
-        $("#exampleModalCenter").modal("hide");
-      });
+{{!--
+
+<head></head> --}}
+<link rel="stylesheet" href="/public/css/home.css">
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    var interestss = $('#int_length').text();
+    if (interestss < '1') {
+      $('#exampleModalCenter').modal("show");
+    }
+    // Hide the Modal
+    $("#modalSave").click(function () {
+      $("#exampleModalCenter").modal("hide");
     });
-  </script>
-</head>
+  });
+</script>
+{{!-- </head> --}}
 
 <div class="container-fluid">
   <div class="row">
@@ -44,7 +46,7 @@
                 <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="submit"
                   style="color: white;">Your Interests</button>
                 <span class="caret"></span>
-                </button>
+                {{!-- </button> --}}
                 <ul role="menu" class="dropdown-menu" id="conatiner">
                   {{!--
                   <script src="public/JS/interests.js"></script> --}}
@@ -71,7 +73,10 @@
                   {{/each}}
                   {{/if}}
                 </ul>
-          </li>
+              </div>
+            </div>
+            {{!--
+          </li> --}}
         </ul>
         <!--Make sure the form has the autocomplete function switched off:-->
         <form autocomplete="off" action="/home/keywordsearch" method="POST">
@@ -82,7 +87,7 @@
         </form>
         <script src="public/JS/search.js"></script>
       </div>
-      </form>
+      {{!-- </form> --}}
     </nav>
   </div>
 </div>
@@ -95,7 +100,7 @@
           {{!-- <header>Topics</header> --}}
           <ul>
             <li><a href="/home"> Home</a></li>
-            <li><a href="/home/likedarticles"> Liked Articles</a></li>
+            {{!-- <li><a href="/home/likedarticles"> Liked Articles</a></li> --}}
             <li><a href="/home/us"> U.S.</a></li>
             <li><a href="/home/sports"> Sports</a></li>
             <li><a href="/home/business"> Business</a></li>
@@ -151,7 +156,8 @@
               <!-- Add icon library -->
               <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/font-awesome.min.css">
-              <input type="checkbox" onclick="myFunction(this); likeBttn(this)" id={{this.link}} class="fa fa-heart like"/>
+              <input type="checkbox" onclick="myFunction(this); likeBttn(this)" id={{this.link}}
+                class="fa fa-heart like" />
               <script>
                 function myFunction(x) {
                   x.classList.toggle("red");
@@ -188,18 +194,14 @@
           </div> --}}
       </div>
       <div class="col-lg-3" style="margin-top: 70px;">
-        <p> I am col-lg-3 right</p>
-        <input type="checkbox" id="col3">
         <div class="cf">
-          <label for="col3" class="ll">Technology</label>
-          <p id="int_length">{{interests_length}}</p>
+          <p id="int_length">Number of Interests Added: {{interests_length}}</p>
         </div>
 
       </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -220,5 +222,5 @@
     </div>
   </div>
 </div>
-</div>
+{{!-- </div> --}}
 <script src="../../public/JS/script.js"></script>

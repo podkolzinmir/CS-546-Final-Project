@@ -6,8 +6,8 @@ function inputinterests(){
        e.preventDefault();
        let inputinterest = document.getElementById('interests').value;
        let profileemail=document.getElementById('profileemail').textContent;
-       console.log(profileemail);
-       console.log(inputinterest.split(','));
+    //    console.log(profileemail);
+    //    console.log(inputinterest.split(','));
        updatedarray = inputinterest.split(',');
        $.ajax({
            type:'POST',
@@ -32,7 +32,7 @@ function searchkeyword(){
             url :'/home/keywordsearch',
             data : inputkeyword,
             success:function(response){
-                console.log(response);
+                // console.log(response);
                 
             },
             error: function(error){
@@ -99,13 +99,13 @@ $(document).on('click', '#conatiner li input', function(){
 function likeBttn(x){
         heart_btn = $(x).attr('id');
         check = x.checked;
-        console.log(heart_btn, check);
+        // console.log(heart_btn, check);
         $.ajax({
             type: 'POST',
             url: '/home/likeButton',
             data: {link: heart_btn, check:check},
           success:function(){
-          console.log("successfully added to likes");
+        //   console.log("successfully added to likes");
           }
         });
 }

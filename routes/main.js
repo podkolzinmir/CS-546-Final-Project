@@ -27,7 +27,7 @@ function sendEmail(emailAddress, emailBody) {
 
 router.get("/", async function (req, res) {
   res.render("differentPages/landingPage", {
-    title: "landing Page",
+    title: "Blog Recommendation System",
   });
 });
 
@@ -330,7 +330,7 @@ router.post("/reset-password", async(req, res) => {
 
 
         const user = await userData.get(emailAddress);
-        console.log(user);
+        // console.log(user);
         var payload = {
             id: user._id,
             email: emailAddress
@@ -373,7 +373,7 @@ router.get('/resetpassword/:id/:token', async(req, res) => {
 
     var id = req.params.id
     user = await userData.getById(id);
-    console.log(user);
+    // console.log(user);
     var secret = user.password;
     var payload = jwt.decode(req.params.token, secret);
 
