@@ -81,10 +81,9 @@ $(document).on('click', '#conatiner li input', function(){
     checkbox_id = $(this).attr('value');
     ch = this.checked;
         if(this.checked == false){
-            if ($('.ll').text() == 'Technology'){
                 $("[data-value*="+checkbox_id+"").hide();
         } 
-        }else {
+        else {
             if(this.checked == true ){
                 $("[data-value*="+checkbox_id+"").show();
             }
