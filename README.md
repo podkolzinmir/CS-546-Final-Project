@@ -21,7 +21,7 @@ node app.js
 ```
 Use the command below to populate database
 ```
-node seed.js
+npm run seed
 ```
 
 ## Step 3:
