@@ -84,6 +84,7 @@ $(document).on('click', '#conatiner li input', function(){
                 $("[data-value*="+checkbox_id+"").hide();
         } 
         else {
+
             if(this.checked == true ){
                 $("[data-value*="+checkbox_id+"").show();
             }

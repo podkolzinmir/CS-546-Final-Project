@@ -19,6 +19,10 @@ For some reason, if the command "npm start" does not work, try the following com
 ```
 node app.js
 ```
+Use the command below to populate database
+```
+npm run seed
+```
 
 ## Step 3:
 You can now access the web application in your browser by navigating to:
