@@ -223,6 +223,19 @@ router.post("/keywordsearch",async function(req,res){
       let articlebyurl = await articlesdb.getByUrl(i)
       listofarticles.push(articlebyurl);
     }
+
+    for (let i =0; i<listofarticles.length; i++){
+          // console.log(likedarticles[i]);
+          listofarticles[i].link = listofarticles[i].article_URL;
+          listofarticles[i].title = listofarticles[i].title;
+          listofarticles[i].pubDate = listofarticles[i].date_published;
+          listofarticles[i].keyword = listofarticles[i].keywords[0];
+          delete listofarticles[i].date_published;
+          delete listofarticles[i].keywords[0];
+          delete listofarticles[i].article_URL;
+         
+      
+        }
     console.log(listofarticles.slice(1,10));
     return res.render("differentPages/homePage",{articles: listofarticles.slice(1,10), interests_length: interests.length});
 
